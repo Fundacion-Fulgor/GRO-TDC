@@ -1,0 +1,10 @@
+title: 8-bit Gated Ring Oscillator Time-to-Digital Converter
+authors:
+- Sebastian Hernandez
+- Emiliano Marclé
+- Constanza Abiuso
+- Paula Brizzio
+type: Digital
+tapeout_target: true
+description: ''
+status_text: Proposed
