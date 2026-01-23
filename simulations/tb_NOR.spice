@@ -1,0 +1,125 @@
+** sch_path: /foss/designs/GRO-TDC/GROTDC_SIM/tb_NOR.sch
+**.subckt tb_NOR
+x1 net1 AB_N A B VSS NOR
+V1 VSS GND {VSS}
+V2 VDD VSS {VDD}
+x3 VDD net5 A1 VSS INV_D1
+x2 VDD net6 B1 VSS INV_D1
+x4 VDD net8 AB_N VSS INV_D1
+V3 net2 VSS dc 0 ac 0 pulse({VSS}, {VDD}, {tda_1}, {tr}, {tf}, 20n)
+V4 net7 net2 dc 0 ac 0 pulse({VSS}, {VDD}, {tda_2}, {tr}, {tf}, {PW})
+V5 net3 VSS dc 0 ac 0 pulse({VSS}, {VDD}, {tdb_1}, {tr}, {tf}, {PW})
+V6 net4 net3 dc 0 ac 0 pulse({VSS}, {VDD}, {tdb_2}, {tr}, {tf}, {PW})
+V7 B1 net4 dc 0 ac 0 pulse({VSS}, {VDD}, {tdb_3}, {tr}, {tf}, 20n)
+x5 VDD A net5 VSS INV_D1
+x6 VDD B net6 VSS INV_D1
+vdd_current VDD net1 0
+.save i(vdd_current)
+V8 A1 net7 dc 0 ac 0 pulse({VSS}, {VDD}, {tda_3}, {tr}, {tf}, {PW})
+**** begin user architecture code
+
+.lib cornerMOSlv.lib mos_tt
+
+
+
+* Parameters
+.param temp=65
+.param VSS=0
+.param VDD=1.2
+
+.param tr=10p
+.param tf=10p
+.param PW=10n
+.param tda_1=30n
+.param tda_2=70n
+.param tda_3=85n
+.param tdb_1=10n
+.param tdb_2=40n
+.param tdb_3=60n
+.param tdb_4=85n
+
+* Beginning of the main code (with the control)
+.control
+
+* Saving all nodes
+save all
+
+* Type of analysis
+tran 50p 100n
+
+* Definition of the variables of the voltages of the nodes
+let vin  = v(B)
+let vout = v(AB_N)
+let VM = 0.6
+
+* Measurement of the propagation delay; Reference: Rabaey book page 195
+* Reference: NGSPICE manual page 325
+meas tran tpLH TRIG vin VAL=VM TD=10n FALL=1 TARG vout VAL=VM TD=10n RISE=1
+meas tran tpHL TRIG vin VAL=VM TD=10n RISE=1 TARG vout VAL=VM TD=10n FALL=1
+let tp = (tpLH+tpHL)/2
+print tp
+
+* Measurement of the time and voltages for the rise and fall time
+meas tran time_20_percent WHEN vout=VDD*0.2
+meas tran v_20_percent FIND vout WHEN time=time_20_percent
+meas tran time_80_percent WHEN vout=VDD*0.8
+meas tran v_80_percent FIND vout WHEN time=time_80_percent
+
+
+* Measurement of the rise time:
+meas tran trise TRIG vout VAL=v_20_percent TD=10n RISE=1 TARG vout VAL=v_80_percent TD=10n RISE=1
+
+* Measurement of the fall time:
+meas tran tfall TRIG vout VAL=v_80_percent TD=10n FALL=1 TARG vout VAL=v_20_percent TD=10n FALL=1
+
+* Measurement of the RMS and AVG current:
+let i_vdd=i(vdd_current)
+meas tran i_vdd_rms RMS i_vdd
+meas tran i_vdd_avg AVG i_vdd
+
+*plot i_vdd
+plot v(A) v(B)
+plot v(AB_N)
+
+let A=v(A)
+let B=v(B)
+let AB_N=v(AB_N)
+* Saving the of the nodes into the raw file
+write tb_INV.raw
+set appendwrite
+.endc
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/NOR.sym # of pins=5
+** sym_path: /foss/designs/GRO-TDC/std_cells/NOR.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/NOR.sch
+.subckt NOR VDD VOUT VA VB VSS
+*.iopin VDD
+*.iopin VSS
+*.ipin VA
+*.ipin VB
+*.opin VOUT
+XM1 VOUT VA VSS VSS sg13_lv_nmos w=0.45u l=0.13u ng=1 m=1
+XM2 VOUT VB VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XM3 VOUT VB net1 VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+XM4 net1 VA VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/INV_D1.sym # of pins=4
+** sym_path: /foss/designs/GRO-TDC/std_cells/INV_D1.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/INV_D1.sch
+.subckt INV_D1 VDD VOUT VIN VSS
+*.iopin VDD
+*.iopin VSS
+*.opin VOUT
+*.ipin VIN
+XM2 VOUT VIN VDD VDD sg13_lv_pmos w=0.3u l=0.13u ng=1 m=1
+XM1 VOUT VIN VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+.ends
+
+.GLOBAL GND
+.end

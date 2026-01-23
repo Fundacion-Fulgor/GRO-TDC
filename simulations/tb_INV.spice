@@ -1,0 +1,85 @@
+** sch_path: /foss/designs/GRO-TDC/GROTDC_SIM/tb_INV.sch
+**.subckt tb_INV
+V1 VSS GND 0
+V3 VIN1 VSS dc 0 ac 0 pulse(0, 1.2, 10n, 10p, 10p, 10n, 20n)
+V5 VDD VSS {VDD}
+x1 net1 VOUT VIN VSS INV_D1
+x2 VDD VOUT2 VOUT VSS INV_D1
+x3[1] VDD VIN VIN1 VSS INV_D1
+x3[0] VDD VIN VIN1 VSS INV_D1
+vdd_current VDD net1 0
+.save i(vdd_current)
+**** begin user architecture code
+
+.lib cornerMOSlv.lib mos_tt
+
+
+
+* Parameters
+.param temp=65
+.param VDD=1.2
+
+* Beginning of the main code (with the control)
+.control
+
+* Saving all nodes
+save all
+
+* Type of analysis
+tran 50p 100n
+
+* Definition of the variables of the voltages of the nodes
+let vin  = v(VIN)
+let vout = v(VOUT)
+let VM = 0.6
+
+* Measurement of the propagation delay; Reference: Rabaey book page 195
+* Reference: NGSPICE manual page 325
+meas tran tpLH TRIG vin VAL=VM TD=10n FALL=1 TARG vout VAL=VM TD=10n RISE=1
+meas tran tpHL TRIG vin VAL=VM TD=10n RISE=1 TARG vout VAL=VM TD=10n FALL=1
+let tp = (tpLH+tpHL)/2
+print tp
+
+* Measurement of the time and voltages for the rise and fall time
+meas tran time_20_percent WHEN vout=VDD*0.2
+meas tran v_20_percent FIND vout WHEN time=time_20_percent
+meas tran time_80_percent WHEN vout=VDD*0.2
+meas tran v_80_percent FIND vout WHEN time=time_80_percent
+
+
+* Measurement of the rise time:
+meas tran trise TRIG vout VAL=v_20_percent RISE=1 TARG vout VAL=v_80_percent RISE=1
+
+* Measurement of the fall time:
+meas tran tfall TRIG vout VAL=v_80_percent FALL=1 TARG vout VAL=v_20_percent FALL=1
+
+* Measurement of the RMS and AVG current:
+let i_vdd=i(vdd_current)
+meas tran i_vdd_rms RMS i_vdd
+meas tran i_vdd_avg AVG i_vdd
+
+plot i_vdd
+
+* Saving the of the nodes into the raw file
+write tb_INV.raw
+set appendwrite
+.endc
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/INV_D1.sym # of pins=4
+** sym_path: /foss/designs/GRO-TDC/std_cells/INV_D1.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/INV_D1.sch
+.subckt INV_D1 VDD VOUT VIN VSS
+*.iopin VDD
+*.iopin VSS
+*.opin VOUT
+*.ipin VIN
+XM2 VOUT VIN VDD VDD sg13_lv_pmos w=0.3u l=0.13u ng=1 m=1
+XM1 VOUT VIN VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+.ends
+
+.GLOBAL GND
+.end

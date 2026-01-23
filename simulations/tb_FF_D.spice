@@ -1,0 +1,199 @@
+** sch_path: /foss/designs/GRO-TDC/GROTDC_SIM/tb_FF_D.sch
+**.subckt tb_FF_D
+x1 net9 CLK RESET VSS Q QN D FF_D
+V15 VSS GND {VSS}
+V16 VDD VSS {VDD}
+x9 VDD net10 A1 VSS INV_D1
+x10 VDD CLK B1 VSS INV_D1
+x11 VDD net18 QN VSS INV_D1
+x12 VDD RESET net10 VSS INV_D1
+vdd_current VDD net9 0
+.save i(vdd_current)
+x2 VDD D C1 VSS INV_D1
+x4 VDD net19 Q VSS INV_D1
+V2 A1 VSS dc 0 ac 0 pulse({VSS}, {VDD}, 25n, {tr}, {tf}, 1n)
+V3 B1 VSS dc 0 ac 0 pulse({VSS}, {VDD}, 2n, {tr}, {tf}, {PW}, 20n)
+V4 C1 VSS dc 0 ac 0 pulse({VSS}, {VDD}, 10n, {tr}, {tf}, 20n, 30n)
+**** begin user architecture code
+
+.lib cornerMOSlv.lib mos_tt
+
+
+
+* Parameters
+.param temp=65
+.param VSS=0
+.param VDD=1.2
+
+.param tr=10p
+.param tf=10p
+.param PW=10n
+
+.param tda_1=35n
+.param tda_2=55n
+.param tda_3=65n
+.param tda_4=75n
+
+.param tdb_1=18n
+.param tdb_2=28n
+.param tdb_3=58n
+.param tdb_4=68n
+
+.param tdc_1=10n
+.param tdc_2=30n
+.param tdc_3=55n
+.param tdc_4=70n
+
+* Beginning of the main code (with the control)
+.control
+
+* Saving all nodes
+save all
+
+* Type of analysis
+tran 50p 100n
+
+* Definition of the variables of the voltages of the nodes
+let vin  = v(CLK)
+let vout = v(Q)
+let VM = 0.6
+
+* Measurement of the propagation delay; Reference: Rabaey book page 195
+* Reference: NGSPICE manual page 325
+meas tran tpLH TRIG vin VAL=VM TD=1n FALL=1 TARG vout VAL=VM TD=1n FALL=1
+meas tran tpHL TRIG vin VAL=VM TD=1n RISE=1 TARG vout VAL=VM TD=1n RISE=1
+let tp = (tpLH+tpHL)/2
+print tp
+
+* Measurement of the time and voltages for the rise and fall time
+meas tran time_20_percent WHEN vout=VDD*0.2
+meas tran v_20_percent FIND vout WHEN time=time_20_percent
+meas tran time_80_percent WHEN vout=VDD*0.8
+meas tran v_80_percent FIND vout WHEN time=time_80_percent
+
+
+* Measurement of the rise time:
+meas tran trise TRIG vout VAL=v_20_percent TD=1n RISE=1 TARG vout VAL=v_80_percent TD=1n RISE=1
+
+* Measurement of the fall time:
+meas tran tfall TRIG vout VAL=v_80_percent TD=1n FALL=1 TARG vout VAL=v_20_percent TD=1n FALL=1
+
+* Measurement of the RMS and AVG current:
+let i_vdd=i(vdd_current)
+meas tran i_vdd_rms RMS i_vdd
+meas tran i_vdd_avg AVG i_vdd
+
+*plot i_vdd
+
+
+
+* Saving the of the nodes into the raw file
+write tb_FF_D.raw
+set appendwrite
+.endc
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/FF_D.sym # of pins=7
+** sym_path: /foss/designs/GRO-TDC/std_cells/FF_D.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/FF_D.sch
+.subckt FF_D VDD VCLK VRESET VSS VQ VQN VD
+*.iopin VDD
+*.iopin VSS
+*.ipin VCLK
+*.ipin VD
+*.ipin VRESET
+*.opin VQ
+*.opin VQN
+x1 VDD net4 VD VSS INV_D1
+x2 VDD net2 net1 VSS INV_D1
+x3 VCLK VSS net7 net2 VDD VCLK_N TG_2C
+x4 VCLK_N VSS net7 net4 VDD VCLK TG_2C
+x5 VCLK VSS net6 net5 VDD VCLK_N TG_2C
+x6 VDD net3 VQ VSS INV_D1
+x7 VCLK_N VSS net6 net3 VDD VCLK TG_2C
+x8 VDD net7 net1 VRESET_N VSS NAND_D2
+x9 VDD net6 VQ VRESET_N VSS NAND_D3
+x10 VDD VCLK_N VCLK VSS INV_D1
+x11 VDD net5 net1 VSS INV_D3
+x12 VDD VRESET_N VRESET VSS INV_D1
+x13 VDD VQN VQ VSS INV_D1
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/INV_D1.sym # of pins=4
+** sym_path: /foss/designs/GRO-TDC/std_cells/INV_D1.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/INV_D1.sch
+.subckt INV_D1 VDD VOUT VIN VSS
+*.iopin VDD
+*.iopin VSS
+*.opin VOUT
+*.ipin VIN
+XM2 VOUT VIN VDD VDD sg13_lv_pmos w=0.3u l=0.13u ng=1 m=1
+XM1 VOUT VIN VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/TG_2C.sym # of pins=6
+** sym_path: /foss/designs/GRO-TDC/std_cells/TG_2C.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/TG_2C.sch
+.subckt TG_2C VCTRLN VSS VOUT VIN VDD VCTRLP
+*.iopin VCTRLN
+*.iopin VCTRLP
+*.opin VOUT
+*.ipin VIN
+*.iopin VSS
+*.iopin VDD
+XM1 VOUT VCTRLN VIN VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XM2 VOUT VCTRLP VIN VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=2
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/NAND_D2.sym # of pins=5
+** sym_path: /foss/designs/GRO-TDC/std_cells/NAND_D2.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/NAND_D2.sch
+.subckt NAND_D2 VDD VA VOUT VB VSS
+*.iopin VDD
+*.iopin VSS
+*.ipin VA
+*.ipin VB
+*.opin VOUT
+XM1 net1 VB VSS VSS sg13_lv_nmos w=0.9u l=0.13u ng=1 m=1
+XM2 VOUT VA net1 VSS sg13_lv_nmos w=0.3u l=0.13u ng=1 m=1
+XM3 VOUT VB VDD VDD sg13_lv_pmos w=0.3u l=0.13u ng=1 m=1
+XM4 VOUT VA VDD VDD sg13_lv_pmos w=0.3u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/NAND_D3.sym # of pins=5
+** sym_path: /foss/designs/GRO-TDC/std_cells/NAND_D3.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/NAND_D3.sch
+.subckt NAND_D3 VDD VA VOUT VB VSS
+*.iopin VDD
+*.iopin VSS
+*.ipin VA
+*.ipin VB
+*.opin VOUT
+XM1 net1 VB VSS VSS sg13_lv_nmos w=1.35u l=0.13u ng=1 m=1
+XM2 VOUT VA net1 VSS sg13_lv_nmos w=0.45u l=0.13u ng=1 m=1
+XM3 VOUT VB VDD VDD sg13_lv_pmos w=0.45u l=0.13u ng=1 m=1
+XM4 VOUT VA VDD VDD sg13_lv_pmos w=0.45u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/INV_D3.sym # of pins=4
+** sym_path: /foss/designs/GRO-TDC/std_cells/INV_D3.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/INV_D3.sch
+.subckt INV_D3 VDD VOUT VIN VSS
+*.iopin VDD
+*.iopin VSS
+*.opin VOUT
+*.ipin VIN
+XM1 VOUT VIN VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=3
+XM2 VOUT VIN VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=6
+.ends
+
+.GLOBAL GND
+.end

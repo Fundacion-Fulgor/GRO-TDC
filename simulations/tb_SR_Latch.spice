@@ -1,0 +1,66 @@
+** sch_path: /foss/designs/GRO-TDC/GROTDC_SIM/tb_SR_Latch.sch
+**.subckt tb_SR_Latch
+V1 VSS GND 0
+V3 A VSS dc 0 ac 0 pulse(0, 1.2, 10n, 1p, 1p, 10n, 20n)
+V5 VDD VSS 1.2
+V2 B VSS dc 0 ac 0 pulse(0, 1.2, 0, 1p, 1p, 20n, 40n)
+x1 VDD A QN QP B VSS SR_Latch
+**** begin user architecture code
+
+
+.param temp=65
+.control
+save all
+tran 50p 100n
+*let clk0 = v(CLK)
+*let VB0 = v(B0)
+
+
+*plot VB0
+*plot VB1
+*plot clk0
+*plot clk1
+
+write counter_tb.raw
+set appendwrite
+.endc
+
+
+
+.lib cornerMOSlv.lib mos_tt
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/SR_Latch.sym # of pins=6
+** sym_path: /foss/designs/GRO-TDC/std_cells/SR_Latch.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/SR_Latch.sch
+.subckt SR_Latch VDD VS QN QP VR VSS
+*.iopin VDD
+*.iopin VSS
+*.ipin VS
+*.ipin VR
+*.opin QP
+*.opin QN
+x1 VDD QN VS QP VSS NOR
+x2 VDD QP QN VR VSS NOR
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/NOR.sym # of pins=5
+** sym_path: /foss/designs/GRO-TDC/std_cells/NOR.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/NOR.sch
+.subckt NOR VDD VOUT VA VB VSS
+*.iopin VDD
+*.iopin VSS
+*.ipin VA
+*.ipin VB
+*.opin VOUT
+XM1 VOUT VA VSS VSS sg13_lv_nmos w=0.45u l=0.13u ng=1 m=1
+XM2 VOUT VB VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XM3 VOUT VB net1 VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+XM4 net1 VA VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+.ends
+
+.GLOBAL GND
+.end

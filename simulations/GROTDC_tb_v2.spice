@@ -1,0 +1,602 @@
+** sch_path: /foss/designs/GRO-TDC/GROTDC_SIM/GROTDC_tb_v2.sch
+**.subckt GROTDC_tb_v2
+V1 VSS GND 0
+V5 VDD VSS 1.2
+V2 RESET VSS dc 0 ac 0 pulse(0, 1.2, 190n, 500p, 500p, 5n, 0)
+V6 DECLK VSS dc 0 ac 0 pulse(0, 1.2, 17n, 500p, 500p, 5n, 0)
+x2 ADDER[7] ADDER[6] ADDER[5] ADDER[4] ADDER[3] ADDER[2] ADDER[1] ADDER[0] VDD START STOP VSS VSS DECLK GROTDC
+V10 START VSS dc 0 ac 0 pulse(0, 1.2, 5n, 50p, 50p, 10n, 20n)
+V11 net1 VSS dc 0 ac 0 pulse(0, 1.2, 0, 50p, 50p, 1n, 0)
+V12 STOP net1 dc 0 ac 0 pulse(0, 1.2, 14n, 50p, 50p, 10n, 20n)
+**** begin user architecture code
+
+.lib cornerMOSlv.lib mos_tt
+
+
+
+.param temp=65
+
+
+.control
+save all
+tran 10p 50n
+* Sources
+let START = v(START)
+let STOP = v(STOP)
+let DECLK = v(DECLK)
+let RESET = v(RESET)
+
+* GRO
+let IN0 = v(x2.IN0)
+let IN1 = v(x2.IN1)
+let IN2 = v(x2.IN2)
+
+* Buffers
+let K0 = v(x2.K0)
+let K1 = v(x2.K1)
+let K2 = v(x2.K2)
+
+* Counters Reg
+let D0_0 = v(x2.D0[0])
+let D0_1 = v(x2.D0[1])
+let D0_2 = v(x2.D0[2])
+let D0_3 = v(x2.D0[3])
+let D0_4 = v(x2.D0[4])
+let D0_5 = v(x2.D0[5])
+let D1_0 = v(x2.D1[0])
+let D1_1 = v(x2.D1[1])
+let D1_2 = v(x2.D1[2])
+let D1_3 = v(x2.D1[3])
+let D1_4 = v(x2.D1[4])
+let D1_5 = v(x2.D1[5])
+let D2_0 = v(x2.D2[0])
+let D2_1 = v(x2.D2[1])
+let D2_2 = v(x2.D2[2])
+let D2_3 = v(x2.D2[3])
+let D2_4 = v(x2.D2[4])
+let D2_5 = v(x2.D2[5])
+
+* FA
+let S1_0 = v(x2.S1[0])
+let S1_1 = v(x2.S1[1])
+let S1_2 = v(x2.S1[2])
+let S1_3 = v(x2.S1[3])
+let S1_4 = v(x2.S1[4])
+let S1_5 = v(x2.S1[5])
+let COUT1 = v(x2.COUT1)
+let S2_0 = v(x2.S2[0])
+let S2_1 = v(x2.S2[1])
+let S2_2 = v(x2.S2[2])
+let S2_3 = v(x2.S2[3])
+let S2_4 = v(x2.S2[4])
+let S2_5 = v(x2.S2[5])
+let S2_6 = v(x2.S2[6])
+let COUT2 = v(x2.COUT2)
+
+* FA Regs
+let ADDER_0 = v(x2.ADDER[0])
+let ADDER_1 = v(x2.ADDER[1])
+let ADDER_2 = v(x2.ADDER[2])
+let ADDER_3 = v(x2.ADDER[3])
+let ADDER_4 = v(x2.ADDER[4])
+let ADDER_5 = v(x2.ADDER[5])
+let ADDER_6 = v(x2.ADDER[6])
+let ADDER_7 = v(x2.ADDER[7])
+
+write GROTDC_tb.raw
+wrdata GRO_TDC_tb.raw time START STOP DECLK RESET IN0 IN1 IN2 K0 K1 K2 D0_0 D0_1 D0_2 D0_3 D0_4 D0_5 D1_0 D1_1 D1_2 D1_3 D1_4 D1_5 D2_0 D2_1 D2_2 D2_3 D2_4 D2_5 S1_0 S1_1 S1_2 S1_3 S1_4 S1_5 COUT1 S2_0 S2_1 S2_2 S2_3 S2_4 S2_5 S2_6 COUT2 ADDER_0 ADDER_1 ADDER_2 ADDER_3 ADDER_4 ADDER_5 ADDER_6  ADDER_7
+
+
+*set appendwrite
+
+.endc
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  GROTDC.sym # of pins=7
+** sym_path: /foss/designs/GRO-TDC/GROTDC.sym
+** sch_path: /foss/designs/GRO-TDC/GROTDC.sch
+.subckt GROTDC ADDER[7] ADDER[6] ADDER[5] ADDER[4] ADDER[3] ADDER[2] ADDER[1] ADDER[0] VDD START STOP VSS RESET DECLK
+*.ipin START
+*.ipin STOP
+*.ipin RESET
+*.ipin DECLK
+*.iopin VDD
+*.iopin VSS
+*.opin ADDER[7],ADDER[6],ADDER[5],ADDER[4],ADDER[3],ADDER[2],ADDER[1],ADDER[0]
+x5 DECLK net7_5 net7_4 net7_3 net7_2 net7_1 net7_0 VDD K0 VSS net8_5 net8_4 net8_3 net8_2 net8_1 net8_0 K1 net9_5 net9_4 net9_3
++ net9_2 net9_1 net9_0 K2 Counters_6bits
+x6 RESET D0[5] D0[4] D0[3] D0[2] D0[1] D0[0] VDD DECLK VSS D1[5] D1[4] D1[3] D1[2] D1[1] D1[0] D2[5] D2[4] D2[3] D2[2] D2[1] D2[0]
++ net7_5 net7_4 net7_3 net7_2 net7_1 net7_0 net8_5 net8_4 net8_3 net8_2 net8_1 net8_0 net9_5 net9_4 net9_3 net9_2 net9_1 net9_0
++ Counters_regs_6bits
+x1 VDD START EN net24 STOP VSS SR_Latch
+x2 VDD EN IN0 IN1 VSS IN2 GRO
+x3 K0 IN0 VDD IN1 VSS K1 K2 IN2 Modi_Buffers
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/Counters_6bits.sym # of pins=9
+** sym_path: /foss/designs/GRO-TDC/std_cells/Counters_6bits.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/Counters_6bits.sch
+.subckt Counters_6bits RESET C0_B[5] C0_B[4] C0_B[3] C0_B[2] C0_B[1] C0_B[0] VDD K0 VSS C1_B[5] C1_B[4] C1_B[3] C1_B[2] C1_B[1]
++ C1_B[0] K1 C2_B[5] C2_B[4] C2_B[3] C2_B[2] C2_B[1] C2_B[0] K2
+*.iopin VDD
+*.iopin VSS
+*.ipin K0
+*.ipin K1
+*.ipin K2
+*.ipin RESET
+*.opin C0_B[5],C0_B[4],C0_B[3],C0_B[2],C0_B[1],C0_B[0]
+*.opin C1_B[5],C1_B[4],C1_B[3],C1_B[2],C1_B[1],C1_B[0]
+*.opin C2_B[5],C2_B[4],C2_B[3],C2_B[2],C2_B[1],C2_B[0]
+x5 C1_B[0] K1 VDD C1_B[1] C1_B[2] VSS RESET C1_B[3] C1_B[4] C1_B[5] 6bits_counter
+x6 C0_B[0] K0 VDD C0_B[1] C0_B[2] VSS RESET C0_B[3] C0_B[4] C0_B[5] 6bits_counter
+x7 C2_B[0] K2 VDD C2_B[1] C2_B[2] VSS RESET C2_B[3] C2_B[4] C2_B[5] 6bits_counter
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/Counters_regs_6bits.sym # of pins=10
+** sym_path: /foss/designs/GRO-TDC/std_cells/Counters_regs_6bits.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/Counters_regs_6bits.sch
+.subckt Counters_regs_6bits RESET D0_B[5] D0_B[4] D0_B[3] D0_B[2] D0_B[1] D0_B[0] VDD CLK VSS D1_B[5] D1_B[4] D1_B[3] D1_B[2]
++ D1_B[1] D1_B[0] D2_B[5] D2_B[4] D2_B[3] D2_B[2] D2_B[1] D2_B[0] C0_B[5] C0_B[4] C0_B[3] C0_B[2] C0_B[1] C0_B[0] C1_B[5] C1_B[4] C1_B[3]
++ C1_B[2] C1_B[1] C1_B[0] C2_B[5] C2_B[4] C2_B[3] C2_B[2] C2_B[1] C2_B[0]
+*.iopin VDD
+*.iopin VSS
+*.ipin RESET
+*.ipin C0_B[5],C0_B[4],C0_B[3],C0_B[2],C0_B[1],C0_B[0]
+*.ipin C1_B[5],C1_B[4],C1_B[3],C1_B[2],C1_B[1],C1_B[0]
+*.ipin C2_B[5],C2_B[4],C2_B[3],C2_B[2],C2_B[1],C2_B[0]
+*.opin D0_B[5],D0_B[4],D0_B[3],D0_B[2],D0_B[1],D0_B[0]
+*.opin D1_B[5],D1_B[4],D1_B[3],D1_B[2],D1_B[1],D1_B[0]
+*.opin D2_B[5],D2_B[4],D2_B[3],D2_B[2],D2_B[1],D2_B[0]
+*.ipin CLK
+x8 VDD CLK RESET VSS D0_B[0] net1 C0_B[0] FF_D
+x1 VDD CLK RESET VSS D0_B[1] net2 C0_B[1] FF_D
+x2 VDD CLK RESET VSS D0_B[2] net3 C0_B[2] FF_D
+x3 VDD CLK RESET VSS D0_B[3] net4 C0_B[3] FF_D
+x4 VDD CLK RESET VSS D0_B[4] net5 C0_B[4] FF_D
+x5 VDD CLK RESET VSS D0_B[5] net6 C0_B[5] FF_D
+x6 VDD CLK RESET VSS D1_B[0] net7 C1_B[0] FF_D
+x7 VDD CLK RESET VSS D1_B[1] net8 C1_B[1] FF_D
+x9 VDD CLK RESET VSS D1_B[2] net9 C1_B[2] FF_D
+x10 VDD CLK RESET VSS D1_B[3] net10 C1_B[3] FF_D
+x11 VDD CLK RESET VSS D1_B[4] net11 C1_B[4] FF_D
+x12 VDD CLK RESET VSS D1_B[5] net12 C1_B[5] FF_D
+x13 VDD CLK RESET VSS D2_B[0] net13 C2_B[0] FF_D
+x14 VDD CLK RESET VSS D2_B[1] net14 C2_B[1] FF_D
+x15 VDD CLK RESET VSS D2_B[2] net15 C2_B[2] FF_D
+x16 VDD CLK RESET VSS D2_B[3] net16 C2_B[3] FF_D
+x17 VDD CLK RESET VSS D2_B[4] net17 C2_B[4] FF_D
+x18 VDD CLK RESET VSS D2_B[5] net18 C2_B[5] FF_D
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/Counter_FA_6bits.sym # of pins=7
+** sym_path: /foss/designs/GRO-TDC/std_cells/Counter_FA_6bits.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/Counter_FA_6bits.sch
+.subckt Counter_FA_6bits S[5] S[4] S[3] S[2] S[1] S[0] A[5] A[4] A[3] A[2] A[1] A[0] VDD COUT B[5] B[4] B[3] B[2] B[1] B[0] VSS
++ CIN
+*.iopin VDD
+*.iopin VSS
+*.ipin A[5],A[4],A[3],A[2],A[1],A[0]
+*.ipin B[5],B[4],B[3],B[2],B[1],B[0]
+*.ipin CIN
+*.opin S[5],S[4],S[3],S[2],S[1],S[0]
+*.opin COUT
+x6 A[0] VDD B[0] S[0] VSS CIN net1 FA
+x1 A[1] VDD B[1] S[1] VSS net1 net2 FA
+x2 A[2] VDD B[2] S[2] VSS net2 net3 FA
+x3 A[3] VDD B[3] S[3] VSS net3 net4 FA
+x4 A[4] VDD B[4] S[4] VSS net4 net5 FA
+x5 A[5] VDD B[5] S[5] VSS net5 COUT FA
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/Counter_FA_7bits.sym # of pins=7
+** sym_path: /foss/designs/GRO-TDC/std_cells/Counter_FA_7bits.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/Counter_FA_7bits.sch
+.subckt Counter_FA_7bits S[6] S[5] S[4] S[3] S[2] S[1] S[0] A[6] A[5] A[4] A[3] A[2] A[1] A[0] VDD COUT B[6] B[5] B[4] B[3] B[2]
++ B[1] B[0] VSS CIN
+*.iopin VDD
+*.iopin VSS
+*.ipin A[6],A[5],A[4],A[3],A[2],A[1],A[0]
+*.ipin B[6],B[5],B[4],B[3],B[2],B[1],B[0]
+*.ipin CIN
+*.opin S[6],S[5],S[4],S[3],S[2],S[1],S[0]
+*.opin COUT
+x6 A[0] VDD B[0] S[0] VSS CIN net1 FA
+x1 A[1] VDD B[1] S[1] VSS net1 net2 FA
+x2 A[2] VDD B[2] S[2] VSS net2 net3 FA
+x3 A[3] VDD B[3] S[3] VSS net3 net4 FA
+x4 A[4] VDD B[4] S[4] VSS net4 net5 FA
+x5 A[5] VDD B[5] S[5] VSS net5 net6 FA
+x7 A[6] VDD B[6] S[6] VSS net6 COUT FA
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/Counters__FA_regs_7bits.sym # of pins=6
+** sym_path: /foss/designs/GRO-TDC/std_cells/Counters__FA_regs_7bits.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/Counters__FA_regs_7bits.sch
+.subckt Counters__FA_regs_7bits RESET D[7] D[6] D[5] D[4] D[3] D[2] D[1] D[0] VDD CLK VSS S[7] S[6] S[5] S[4] S[3] S[2] S[1] S[0]
+*.iopin VDD
+*.iopin VSS
+*.ipin RESET
+*.ipin S[7],S[6],S[5],S[4],S[3],S[2],S[1],S[0]
+*.opin D[7],D[6],D[5],D[4],D[3],D[2],D[1],D[0]
+*.ipin CLK
+x8 VDD CLK RESET VSS D[0] net1 S[0] FF_D
+x1 VDD CLK RESET VSS D[1] net2 S[1] FF_D
+x2 VDD CLK RESET VSS D[2] net3 S[2] FF_D
+x3 VDD CLK RESET VSS D[3] net4 S[3] FF_D
+x4 VDD CLK RESET VSS D[4] net5 S[4] FF_D
+x5 VDD CLK RESET VSS D[5] net6 S[5] FF_D
+x6 VDD CLK RESET VSS D[6] net7 S[6] FF_D
+x7 VDD CLK RESET VSS D[7] net8 S[7] FF_D
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/SR_Latch.sym # of pins=6
+** sym_path: /foss/designs/GRO-TDC/std_cells/SR_Latch.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/SR_Latch.sch
+.subckt SR_Latch VDD VS QN QP VR VSS
+*.iopin VDD
+*.iopin VSS
+*.ipin VS
+*.ipin VR
+*.opin QP
+*.opin QN
+x1 VDD QN VS QP VSS NOR
+x2 VDD QP QN VR VSS NOR
+.ends
+
+
+* expanding   symbol:  GRO.sym # of pins=6
+** sym_path: /foss/designs/GRO-TDC/GRO.sym
+** sch_path: /foss/designs/GRO-TDC/GRO.sch
+.subckt GRO VDD EN K0 K1 VSS K2
+*.ipin EN
+*.iopin VDD
+*.iopin VSS
+*.opin K0
+*.opin K1
+*.opin K2
+x2 S K0 K2 VSS INV3
+x3 S K1 K0 VSS INV3
+x4 S K2 K1 VSS INV3
+XM1 S G VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=32
+x5[1] VDD EN_N EN VSS INV_D1
+x5[0] VDD EN_N EN VSS INV_D1
+x6[3] VDD net1_3 EN_N VSS INV_D1
+x6[2] VDD net1_2 EN_N VSS INV_D1
+x6[1] VDD net1_1 EN_N VSS INV_D1
+x6[0] VDD net1_0 EN_N VSS INV_D1
+x7[7] VDD net2_7 net1_3 VSS INV_D1
+x7[6] VDD net2_6 net1_2 VSS INV_D1
+x7[5] VDD net2_5 net1_1 VSS INV_D1
+x7[4] VDD net2_4 net1_0 VSS INV_D1
+x7[3] VDD net2_3 net1_3 VSS INV_D1
+x7[2] VDD net2_2 net1_2 VSS INV_D1
+x7[1] VDD net2_1 net1_1 VSS INV_D1
+x7[0] VDD net2_0 net1_0 VSS INV_D1
+x8[15] VDD G net2_7 VSS INV_D1
+x8[14] VDD G net2_6 VSS INV_D1
+x8[13] VDD G net2_5 VSS INV_D1
+x8[12] VDD G net2_4 VSS INV_D1
+x8[11] VDD G net2_3 VSS INV_D1
+x8[10] VDD G net2_2 VSS INV_D1
+x8[9] VDD G net2_1 VSS INV_D1
+x8[8] VDD G net2_0 VSS INV_D1
+x8[7] VDD G net2_7 VSS INV_D1
+x8[6] VDD G net2_6 VSS INV_D1
+x8[5] VDD G net2_5 VSS INV_D1
+x8[4] VDD G net2_4 VSS INV_D1
+x8[3] VDD G net2_3 VSS INV_D1
+x8[2] VDD G net2_2 VSS INV_D1
+x8[1] VDD G net2_1 VSS INV_D1
+x8[0] VDD G net2_0 VSS INV_D1
+XM2 S G VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XM3 K2 G VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XM4 K0 EN_N VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=32
+.ends
+
+
+* expanding   symbol:  Modi_Buffers.sym # of pins=8
+** sym_path: /foss/designs/GRO-TDC/Modi_Buffers.sym
+** sch_path: /foss/designs/GRO-TDC/Modi_Buffers.sch
+.subckt Modi_Buffers K0 IN0 VDD IN1 VSS K1 K2 IN2
+*.ipin IN0
+*.ipin IN1
+*.ipin IN2
+*.opin K0
+*.opin K1
+*.opin K2
+*.iopin VDD
+*.iopin VSS
+x1[1] VDD net1 IN0 VSS INV_D1
+x1[0] VDD net1 IN0 VSS INV_D1
+x2[1] VDD K0 net1 VSS INV_D2
+x2[0] VDD K0 net1 VSS INV_D2
+x3 VDD net1 K0 VSS INV05
+x3[1] VDD net2 IN1 VSS INV_D1
+x3[0] VDD net2 IN1 VSS INV_D1
+x4[1] VDD net3 IN2 VSS INV_D1
+x4[0] VDD net3 IN2 VSS INV_D1
+x5[1] VDD K1 net2 VSS INV_D1
+x5[0] VDD K1 net2 VSS INV_D1
+x6[1] VDD K2 net3 VSS INV_D1
+x6[0] VDD K2 net3 VSS INV_D1
+x1 VDD net2 K1 VSS INV05
+x2 VDD net3 K2 VSS INV05
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/6bits_counter.sym # of pins=10
+** sym_path: /foss/designs/GRO-TDC/std_cells/6bits_counter.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/6bits_counter.sch
+.subckt 6bits_counter B0 CLK VDD B1 B2 VSS RESET B3 B4 B5
+*.iopin VDD
+*.iopin VSS
+*.ipin CLK
+*.ipin RESET
+*.opin B0
+*.opin B1
+*.opin B2
+*.opin B3
+*.opin B4
+*.opin B5
+x1 VDD CLK RESET VSS net1 B0 B0 FF_D
+x2 VDD net1 RESET VSS net2 B1 B1 FF_D
+x3 VDD net2 RESET VSS net3 B2 B2 FF_D
+x4 VDD net3 RESET VSS net4 B3 B3 FF_D
+x5 VDD net4 RESET VSS net5 B4 B4 FF_D
+x6 VDD net5 RESET VSS net6 B5 B5 FF_D
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/FF_D.sym # of pins=7
+** sym_path: /foss/designs/GRO-TDC/std_cells/FF_D.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/FF_D.sch
+.subckt FF_D VDD VCLK VRESET VSS VQ VQN VD
+*.iopin VDD
+*.iopin VSS
+*.ipin VCLK
+*.ipin VD
+*.ipin VRESET
+*.opin VQ
+*.opin VQN
+x1 VDD net4 VD VSS INV_D1
+x2 VDD net2 net1 VSS INV_D1
+x3 VCLK VSS net7 net2 VDD VCLK_N TG_2C
+x4 VCLK_N VSS net7 net4 VDD VCLK TG_2C
+x5 VCLK VSS net6 net5 VDD VCLK_N TG_2C
+x6 VDD net3 VQ VSS INV_D1
+x7 VCLK_N VSS net6 net3 VDD VCLK TG_2C
+x8 VDD net7 net1 VRESET_N VSS NAND_D2
+x9 VDD net6 VQ VRESET_N VSS NAND_D3
+x10 VDD VCLK_N VCLK VSS INV_D1
+x11 VDD net5 net1 VSS INV_D3
+x12 VDD VRESET_N VRESET VSS INV_D1
+x13 VDD VQN VQ VSS INV_D1
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/FA.sym # of pins=7
+** sym_path: /foss/designs/GRO-TDC/std_cells/FA.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/FA.sch
+.subckt FA A VDD B S VSS CIN CSAL
+*.ipin B
+*.ipin A
+*.ipin CIN
+*.opin S
+*.opin CSAL
+*.iopin VDD
+*.iopin VSS
+x1 net2 B VDD CIN VSS XOR
+x5 S A VDD net2 VSS XOR
+x6 VDD net1 net4 net3 VSS OR
+x7 VDD CSAL net1 net5 VSS OR
+x2 VDD B net4 CIN VSS AND
+x3 VDD B net3 A VSS AND
+x4 VDD CIN net5 A VSS AND
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/NOR.sym # of pins=5
+** sym_path: /foss/designs/GRO-TDC/std_cells/NOR.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/NOR.sch
+.subckt NOR VDD VOUT VA VB VSS
+*.iopin VDD
+*.iopin VSS
+*.ipin VA
+*.ipin VB
+*.opin VOUT
+XM1 VOUT VA VSS VSS sg13_lv_nmos w=0.45u l=0.13u ng=1 m=1
+XM2 VOUT VB VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XM3 VOUT VB net1 VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+XM4 net1 VA VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/INV3.sym # of pins=4
+** sym_path: /foss/designs/GRO-TDC/std_cells/INV3.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/INV3.sch
+.subckt INV3 VDD VOUT VIN VSS
+*.iopin VDD
+*.iopin VSS
+*.opin VOUT
+*.ipin VIN
+x2 VDD net2 VIN VSS INV_D1
+x1[1] VDD net1_1 net2 VSS INV_D1
+x1[0] VDD net1_0 net2 VSS INV_D1
+x3[3] VDD VOUT net1_1 VSS INV_D1
+x3[2] VDD VOUT net1_0 VSS INV_D1
+x3[1] VDD VOUT net1_1 VSS INV_D1
+x3[0] VDD VOUT net1_0 VSS INV_D1
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/INV_D1.sym # of pins=4
+** sym_path: /foss/designs/GRO-TDC/std_cells/INV_D1.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/INV_D1.sch
+.subckt INV_D1 VDD VOUT VIN VSS
+*.iopin VDD
+*.iopin VSS
+*.opin VOUT
+*.ipin VIN
+XM2 VOUT VIN VDD VDD sg13_lv_pmos w=0.3u l=0.13u ng=1 m=1
+XM1 VOUT VIN VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/INV_D2.sym # of pins=4
+** sym_path: /foss/designs/GRO-TDC/std_cells/INV_D2.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/INV_D2.sch
+.subckt INV_D2 VDD VOUT VIN VSS
+*.iopin VDD
+*.iopin VSS
+*.opin VOUT
+*.ipin VIN
+XM1 VOUT VIN VSS VSS sg13_lv_nmos w=0.3u l=0.13u ng=1 m=1
+XM2 VOUT VIN VDD VDD sg13_lv_pmos w=0.3u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/INV05.sym # of pins=4
+** sym_path: /foss/designs/GRO-TDC/std_cells/INV05.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/INV05.sch
+.subckt INV05 VDD VOUT VIN VSS
+*.iopin VDD
+*.iopin VSS
+*.opin VOUT
+*.ipin VIN
+XM1 net1 VIN VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XM3 VOUT VIN VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+XM2 VOUT VIN net1 VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/TG_2C.sym # of pins=6
+** sym_path: /foss/designs/GRO-TDC/std_cells/TG_2C.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/TG_2C.sch
+.subckt TG_2C VCTRLN VSS VOUT VIN VDD VCTRLP
+*.iopin VCTRLN
+*.iopin VCTRLP
+*.opin VOUT
+*.ipin VIN
+*.iopin VSS
+*.iopin VDD
+XM1 VOUT VCTRLN VIN VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XM2 VOUT VCTRLP VIN VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=2
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/NAND_D2.sym # of pins=5
+** sym_path: /foss/designs/GRO-TDC/std_cells/NAND_D2.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/NAND_D2.sch
+.subckt NAND_D2 VDD VA VOUT VB VSS
+*.iopin VDD
+*.iopin VSS
+*.ipin VA
+*.ipin VB
+*.opin VOUT
+XM1 net1 VB VSS VSS sg13_lv_nmos w=0.9u l=0.13u ng=1 m=1
+XM2 VOUT VA net1 VSS sg13_lv_nmos w=0.3u l=0.13u ng=1 m=1
+XM3 VOUT VB VDD VDD sg13_lv_pmos w=0.3u l=0.13u ng=1 m=1
+XM4 VOUT VA VDD VDD sg13_lv_pmos w=0.3u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/NAND_D3.sym # of pins=5
+** sym_path: /foss/designs/GRO-TDC/std_cells/NAND_D3.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/NAND_D3.sch
+.subckt NAND_D3 VDD VA VOUT VB VSS
+*.iopin VDD
+*.iopin VSS
+*.ipin VA
+*.ipin VB
+*.opin VOUT
+XM1 net1 VB VSS VSS sg13_lv_nmos w=1.35u l=0.13u ng=1 m=1
+XM2 VOUT VA net1 VSS sg13_lv_nmos w=0.45u l=0.13u ng=1 m=1
+XM3 VOUT VB VDD VDD sg13_lv_pmos w=0.45u l=0.13u ng=1 m=1
+XM4 VOUT VA VDD VDD sg13_lv_pmos w=0.45u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/INV_D3.sym # of pins=4
+** sym_path: /foss/designs/GRO-TDC/std_cells/INV_D3.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/INV_D3.sch
+.subckt INV_D3 VDD VOUT VIN VSS
+*.iopin VDD
+*.iopin VSS
+*.opin VOUT
+*.ipin VIN
+XM1 VOUT VIN VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XM2 VOUT VIN VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/XOR.sym # of pins=5
+** sym_path: /foss/designs/GRO-TDC/std_cells/XOR.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/XOR.sch
+.subckt XOR OUT A VDD B VSS
+*.iopin VDD
+*.iopin VSS
+*.ipin A
+*.ipin B
+*.opin OUT
+x2 VDD net3 net2 B VSS AND
+x4 VDD net3 A VSS INV_D1
+x5 VDD net1 B VSS INV_D1
+x1 VDD OUT net2 net4 VSS OR
+x3 VDD A net4 net1 VSS AND
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/OR.sym # of pins=5
+** sym_path: /foss/designs/GRO-TDC/std_cells/OR.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/OR.sch
+.subckt OR VDD VOUT VA VB VSS
+*.iopin VDD
+*.iopin VSS
+*.ipin VA
+*.ipin VB
+*.opin VOUT
+x2 VDD VOUT net1 VSS INV_D1
+x1 VDD net1 VA VB VSS NOR
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/AND.sym # of pins=5
+** sym_path: /foss/designs/GRO-TDC/std_cells/AND.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/AND.sch
+.subckt AND VDD VA VOUT VB VSS
+*.iopin VDD
+*.iopin VSS
+*.ipin VA
+*.ipin VB
+*.opin VOUT
+x1 VDD VA net1 VB VSS NAND
+x2 VDD VOUT net1 VSS INV_D1
+.ends
+
+
+* expanding   symbol:  /foss/designs/GRO-TDC/std_cells/NAND.sym # of pins=5
+** sym_path: /foss/designs/GRO-TDC/std_cells/NAND.sym
+** sch_path: /foss/designs/GRO-TDC/std_cells/NAND.sch
+.subckt NAND VDD VA VOUT VB VSS
+*.iopin VDD
+*.iopin VSS
+*.ipin VA
+*.ipin VB
+*.opin VOUT
+XM1 net1 VB VSS VSS sg13_lv_nmos w=0.45u l=0.13u ng=1 m=1
+XM2 VOUT VA net1 VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XM3 VOUT VB VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+XM4 VOUT VA VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+.ends
+
+.GLOBAL GND
+.end
