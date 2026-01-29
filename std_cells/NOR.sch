@@ -1,4 +1,4 @@
-v {xschem version=3.4.8RC file_version=1.2}
+v {xschem version=3.4.8RC file_version=1.3}
 G {}
 K {}
 V {}
@@ -13,18 +13,18 @@ N 60 -290 80 -290 {lab=VB}
 N 240 -190 260 -190 {lab=VA}
 N 240 -390 240 -190 {lab=VA}
 N 60 -390 240 -390 {lab=VA}
-N 140 -240 140 -220 {lab=#net1}
-N 140 -240 300 -240 {lab=#net1}
-N 300 -240 300 -220 {lab=#net1}
-N 300 -260 300 -240 {lab=#net1}
-N 300 -240 460 -240 {lab=#net1}
+N 140 -240 140 -220 {lab=VOUT}
+N 140 -240 300 -240 {lab=VOUT}
+N 300 -240 300 -220 {lab=VOUT}
+N 300 -260 300 -240 {lab=VOUT}
+N 300 -240 460 -240 {lab=VOUT}
 N 140 -120 140 -80 {lab=VSS}
 N 140 -80 300 -80 {lab=VSS}
 N 300 -120 300 -80 {lab=VSS}
 N 300 -80 320 -80 {lab=VSS}
 N 300 -500 300 -420 {lab=VDD}
 N 300 -500 320 -500 {lab=VDD}
-N 300 -360 300 -320 {lab=#net2}
+N 300 -360 300 -320 {lab=#net1}
 N 300 -390 390 -390 {lab=VDD}
 N 300 -290 390 -290 {lab=VDD}
 N 140 -190 180 -190 {lab=VSS}
@@ -37,7 +37,7 @@ N 340 -190 340 -120 {lab=VSS}
 N 300 -190 340 -190 {lab=VSS}
 C {sg13g2_pr/sg13_lv_nmos.sym} 280 -190 0 0 {name=M1
 l=0.13u
-w=0.45u
+w=0.15u
 ng=1
 m=1
 model=sg13_lv_nmos

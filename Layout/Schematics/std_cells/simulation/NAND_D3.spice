@@ -1,0 +1,8 @@
+** sch_path: /home/designer/shared/GRO-TDC/std_cells/NAND_D3.sch
+.subckt NAND_D3 VDD VA VOUT VB VSS
+*.PININFO VDD:B VSS:B VA:I VB:I VOUT:O
+M1 net1 VB VSS VSS sg13_lv_nmos w=1.35u l=0.13u ng=1 m=1
+M2 VOUT VA net1 VSS sg13_lv_nmos w=0.45u l=0.13u ng=1 m=1
+M3 VOUT VB VDD VDD sg13_lv_pmos w=0.45u l=0.13u ng=1 m=1
+M4 VOUT VA VDD VDD sg13_lv_pmos w=0.45u l=0.13u ng=1 m=1
+.ends

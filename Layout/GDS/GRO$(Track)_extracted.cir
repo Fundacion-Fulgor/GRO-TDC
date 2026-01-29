@@ -1,0 +1,341 @@
+* Extracted by KLayout with SG13G2 LVS runset on : 27/01/2026 19:23
+
+.SUBCKT GRO$(Track)
+X$1 \$1 GRO
+.ENDS GRO$(Track)
+
+.SUBCKT GRO \$1
+X$1 \$1 \$1 \$1 \$1 \$1 \$1 \$1 \$1 M1_4
+X$2 \$1 \$1 \$1 \$1 INV3
+X$3 \$2 \$1 \$1 \$1 INV3
+X$4 \$1 \$1 \$1 \$1 \$1 \$1 \$1 \$1 M1_4
+X$5 \$1 \$1 \$1 \$2 INV3
+X$6 \$1 \$1 \$23 \$1 x5
+X$7 \$1 \$1 \$20 \$20 \$20 \$20 \$1 \$1 \$1 \$1 x6
+X$8 \$1 \$1 Power_Rail_Wide$2
+X$9 \$1 \$1 \$1 \$1 \$1 \$1 \$1 \$1 \$1 \$1 \$1 \$1 \$1 \$1 \$1 \$1 \$1 \$16
++ \$16 \$16 \$16 \$16 \$16 \$16 \$16 \$16 \$16 \$16 \$16 \$16 \$16 \$16 \$16
++ \$1 \$1 x8
+X$10 \$1 \$1 \$16 \$16 \$16 \$16 \$16 \$16 \$16 \$16 \$20 \$20 \$20 \$20 \$20
++ \$20 \$20 \$20 x7
+X$11 \$1 \$1 Power_Rail_Wide$2
+X$12 \$1 \$1 Power_Rail_Wide$2
+X$13 \$1 \$1 Power_Rail_Wide$2
+X$14 \$1 \$1 Power_Rail_Wide$2
+X$15 \$1 \$1 Power_Rail_Wide$2
+X$16 \$1 \$1 Power_Rail_Wide$2
+X$17 \$1 \$1 GRO_routings_Via1
+X$18 \$1 \$1 GRO_routings_Via1
+X$19 \$23 \$1 GRO_routings_Via1
+X$20 \$23 \$1 GRO_routings_Via1
+X$21 \$1 \$1 Power_Rail_Wide$2
+X$22 \$1 \$1 Power_Rail_Wide$2
+X$23 \$1 \$1 Power_Rail_Wide$2
+X$24 \$1 \$1 Power_Rail_Wide$2
+X$25 \$1 \$1 Power_Rail_Wide$2
+X$26 \$16 \$1 GRO_routings_Via1
+X$27 \$16 \$1 GRO_routings_Via1
+X$28 \$16 \$1 GRO_routings_Via1
+X$29 \$16 \$1 GRO_routings_Via1
+X$30 \$16 \$1 GRO_routings_Via1
+X$31 \$16 \$1 GRO_routings_Via1
+X$32 \$16 \$1 GRO_routings_Via1
+X$33 \$16 \$1 GRO_routings_Via1
+X$34 \$16 \$1 GRO_routings_Via1
+X$35 \$16 \$1 GRO_routings_Via1
+X$36 \$16 \$1 GRO_routings_Via1
+X$37 \$16 \$1 GRO_routings_Via1
+X$38 \$16 \$1 GRO_routings_Via1
+X$39 \$16 \$1 GRO_routings_Via1
+X$40 \$16 \$1 GRO_routings_Via1
+X$41 \$16 \$1 GRO_routings_Via1
+X$42 \$1 \$1 GRO_routings_Via1
+X$43 \$1 \$1 GRO_routings_Via1
+X$44 \$1 \$1 GRO_routings_Via1
+X$45 \$1 \$1 GRO_routings_Via1
+X$46 \$1 \$1 GRO_routings_Via1
+X$47 \$1 \$1 GRO_routings_Via1
+X$48 \$1 \$1 GRO_routings_Via1
+X$49 \$1 \$1 GRO_routings_Via1
+X$50 \$1 \$1 GRO_routings_Via1
+X$51 \$1 \$1 GRO_routings_Via1
+X$52 \$1 \$1 GRO_routings_Via1
+X$53 \$1 \$1 GRO_routings_Via1
+X$54 \$1 \$1 GRO_routings_Via1
+X$55 \$1 \$1 GRO_routings_Via1
+X$56 \$1 \$1 GRO_routings_Via1
+X$57 \$1 \$1 GRO_routings_Via1
+X$58 \$1 \$1 GRO_routings_M1_X8
+X$59 \$1 \$1 GRO_routings_M1_X8
+X$60 \$1 \$1 GRO_routings_M1_X8
+X$61 \$1 \$1 GRO_routings_M1_X8
+X$62 \$1 \$1 GRO_routings_M1_X8
+X$63 \$1 \$1 GRO_routings_M1_X8
+X$64 \$1 \$1 GRO_routings_M1_X8
+X$65 \$1 \$1 GRO_routings_M1_X8
+X$66 \$1 \$1 Power_Rail_Wide$2
+X$67 \$1 \$1 Power_Rail_Wide$2
+X$68 \$1 \$1 Power_Rail_Wide$2
+X$69 \$1 \$1 Power_Rail_Wide$2
+X$70 \$1 \$1 Power_Rail_Wide$2
+X$71 \$20 \$1 GRO_routings_Via1
+X$72 \$20 \$1 GRO_routings_Via1
+X$73 \$20 \$1 GRO_routings_Via1
+X$74 \$20 \$1 GRO_routings_Via1
+X$75 \$20 \$1 GRO_routings_Via1
+X$76 \$20 \$1 GRO_routings_Via1
+X$77 \$20 \$1 GRO_routings_Via1
+X$78 \$20 \$1 GRO_routings_Via1
+X$79 \$16 \$1 GRO_routings_Via1
+X$80 \$16 \$1 GRO_routings_Via1
+X$81 \$16 \$1 GRO_routings_Via1
+X$82 \$16 \$1 GRO_routings_Via1
+X$83 \$16 \$1 GRO_routings_Via1
+X$84 \$16 \$1 GRO_routings_Via1
+X$85 \$16 \$1 GRO_routings_Via1
+X$86 \$16 \$1 GRO_routings_Via1
+X$87 \$1 \$1 Power_Rail_Wide$2
+X$88 \$1 \$1 Power_Rail_Wide$2
+X$89 \$1 \$1 Power_Rail_Wide$2
+X$90 \$1 \$1 Power_Rail_Wide$2
+X$91 \$1 \$1 Power_Rail_Wide$2
+X$92 \$1 \$1 Power_Rail_Wide$2
+X$93 \$1 \$1 GRO_routings_Via1
+X$94 \$1 \$1 GRO_routings_Via1
+X$95 \$1 \$1 GRO_routings_Via1
+X$96 \$1 \$1 GRO_routings_Via1
+X$97 \$20 \$1 GRO_routings_Via1
+X$98 \$20 \$1 GRO_routings_Via1
+X$99 \$20 \$1 GRO_routings_Via1
+X$100 \$20 \$1 GRO_routings_Via1
+X$101 \$1 \$1 Power_Rail_Wide$2
+X$102 \$1 \$1 Power_Rail_Wide$2
+X$103 \$1 \$1 Power_Rail_Wide$2
+X$104 \$1 \$1 Power_Rail_Wide$2
+X$105 \$2 \$1 \$1 \$1 nmos$7
+X$106 \$1 \$1 Power_Rail_Wide$2
+X$107 \$1 \$1 Power_Rail_Wide$2
+X$108 \$1 \$1 Power_Rail_Wide$2
+X$109 \$1 \$1 Power_Rail_Wide$2
+X$110 \$1 \$1 \$1 \$1 nmos$7
+X$111 \$2 \$1 GRO_routings_Stack_M1_M4
+.ENDS GRO
+
+.SUBCKT Power_Rail_Wide$2 \$1 \$2
+.ENDS Power_Rail_Wide$2
+
+.SUBCKT GRO_routings_M1_X8 \$1 \$2
+.ENDS GRO_routings_M1_X8
+
+.SUBCKT INV3 \$3 \$4 \$5 \$I5
+X$1 \$5 \$2 \$2 \$1 \$1 \$4 x1
+X$2 \$5 \$1 \$I5 \$4 x2
+X$3 \$5 \$3 \$3 \$3 \$3 \$2 \$2 \$2 \$2 \$4 x3
+X$4 \$4 \$5 GRO_routings_Stack_M1_M4
+X$5 \$4 \$5 GRO_routings_Stack_M1_M4
+.ENDS INV3
+
+.SUBCKT x6 \$1 \$2 \$I16 \$I15 \$I14 \$I13 \$I12 \$I11 \$I10 \$I9
+X$1 \$1 \$2 \$I9 \$I13 INV_D1$2
+X$2 \$1 \$2 \$I10 \$I14 INV_D1$2
+X$3 \$1 \$2 \$I11 \$I15 INV_D1$2
+X$4 \$1 \$2 \$I12 \$I16 INV_D1$2
+.ENDS x6
+
+.SUBCKT x7 \$1 \$2 \$I32 \$I31 \$I30 \$I29 \$I28 \$I27 \$I26 \$I25 \$I24 \$I23
++ \$I22 \$I21 \$I20 \$I19 \$I18 \$I17
+X$1 \$1 \$2 \$I17 \$I25 INV_D1$2
+X$2 \$1 \$2 \$I18 \$I26 INV_D1$2
+X$3 \$1 \$2 \$I19 \$I27 INV_D1$2
+X$4 \$1 \$2 \$I20 \$I28 INV_D1$2
+X$5 \$1 \$2 \$I21 \$I29 INV_D1$2
+X$6 \$1 \$2 \$I22 \$I30 INV_D1$2
+X$7 \$1 \$2 \$I23 \$I31 INV_D1$2
+X$8 \$1 \$2 \$I24 \$I32 INV_D1$2
+.ENDS x7
+
+.SUBCKT x8 \$1 \$I64 \$I63 \$I62 \$I61 \$I60 \$I59 \$I58 \$I57 \$I56 \$I55
++ \$I54 \$I53 \$I52 \$I51 \$I50 \$I49 \$I48 \$I47 \$I46 \$I45 \$I44 \$I43 \$I42
++ \$I41 \$I40 \$I39 \$I38 \$I37 \$I36 \$I35 \$I34 \$I33 \$I25 \$I17
+X$1 \$1 \$I17 \$I33 \$I49 INV_D1$2
+X$2 \$1 \$I25 \$I41 \$I57 INV_D1$2
+X$3 \$1 \$I25 \$I42 \$I58 INV_D1$2
+X$4 \$1 \$I17 \$I34 \$I50 INV_D1$2
+X$5 \$1 \$I25 \$I43 \$I59 INV_D1$2
+X$6 \$1 \$I17 \$I35 \$I51 INV_D1$2
+X$7 \$1 \$I25 \$I44 \$I60 INV_D1$2
+X$8 \$1 \$I17 \$I36 \$I52 INV_D1$2
+X$9 \$1 \$I25 \$I45 \$I61 INV_D1$2
+X$10 \$1 \$I17 \$I37 \$I53 INV_D1$2
+X$11 \$1 \$I25 \$I46 \$I62 INV_D1$2
+X$12 \$1 \$I17 \$I38 \$I54 INV_D1$2
+X$13 \$1 \$I25 \$I47 \$I63 INV_D1$2
+X$14 \$1 \$I17 \$I39 \$I55 INV_D1$2
+X$15 \$1 \$I25 \$I48 \$I64 INV_D1$2
+X$16 \$1 \$I17 \$I40 \$I56 INV_D1$2
+.ENDS x8
+
+.SUBCKT x5 \$1 \$2 \$3 \$4
+X$1 \$1 \$4 \$3 \$2 INV_D1$2
+X$2 \$2 \$1 GRO_routings_Via1
+X$3 \$3 \$1 GRO_routings_Via1
+X$4 \$1 \$4 \$3 \$2 INV_D1$2
+X$5 \$2 \$1 GRO_routings_Via1
+X$6 \$3 \$1 GRO_routings_Via1
+.ENDS x5
+
+.SUBCKT M1_4 \$1 \$2 \$4 \$5 \$6 \$9 \$10 \$11
+X$1 \$2 \$6 \$4 \$6 \$4 \$4 \$6 \$4 \$6 \$6 \$5 \$5 \$5 \$5 \$5 \$5 \$5 \$5 \$1
++ M1_no_routed
+X$2 \$5 \$2 M1_routings_GateVia
+X$3 \$5 \$2 M1_routings_GateVia
+X$4 \$5 \$2 M1_routings_GateVia
+X$5 \$5 \$2 M1_routings_GateVia
+.ENDS M1_4
+
+.SUBCKT GRO_routings_Stack_M1_M4 \$1 \$2
+.ENDS GRO_routings_Stack_M1_M4
+
+.SUBCKT x3 \$1 \$I14 \$I13 \$I12 \$I11 \$I10 \$I9 \$I8 \$I7 \$I4
+X$1 \$1 \$I4 \$I8 \$I12 INV_D1$2
+X$2 \$1 \$I4 \$I7 \$I11 INV_D1$2
+X$3 \$1 \$I4 \$I9 \$I13 INV_D1$2
+X$4 \$1 \$I4 \$I10 \$I14 INV_D1$2
+.ENDS x3
+
+.SUBCKT x2 \$1 \$I4 \$I3 \$I2
+X$1 \$1 \$I2 \$I3 \$I4 INV_D1$2
+.ENDS x2
+
+.SUBCKT x1 \$1 \$I8 \$I7 \$I6 \$I5 \$I4
+X$1 \$1 \$I4 \$I6 \$I8 INV_D1$2
+X$2 \$1 \$I4 \$I5 \$I7 INV_D1$2
+.ENDS x1
+
+.SUBCKT GRO_routings_Via1 \$1 \$2
+.ENDS GRO_routings_Via1
+
+.SUBCKT M1_routings_GateVia \$1 \$2
+.ENDS M1_routings_GateVia
+
+.SUBCKT M1_no_routed \$1 \$2 \$3 \$4 \$5 \$7 \$8 \$9 \$10 \$15 \$I158 \$I154
++ \$I150 \$I146 \$I142 \$I138 \$I134 \$I131 \$I121
+X$1 \$7 \$8 \$I158 \$1 \$I121 M1_routed
+X$2 \$7 \$15 \$I131 \$1 \$I121 M1_routed
+X$3 \$7 \$8 \$I158 \$1 \$I121 M1_routed
+X$4 \$7 \$8 \$I158 \$1 \$I121 M1_routed
+X$5 \$5 \$8 \$I134 \$1 \$I121 M1_routed
+X$6 \$5 \$10 \$I154 \$1 \$I121 M1_routed
+X$7 \$5 \$10 \$I154 \$1 \$I121 M1_routed
+X$8 \$5 \$10 \$I154 \$1 \$I121 M1_routed
+X$9 \$9 \$10 \$I138 \$1 \$I121 M1_routed
+X$10 \$9 \$4 \$I150 \$1 \$I121 M1_routed
+X$11 \$9 \$4 \$I150 \$1 \$I121 M1_routed
+X$12 \$9 \$4 \$I150 \$1 \$I121 M1_routed
+X$13 \$3 \$4 \$I142 \$1 \$I121 M1_routed
+X$14 \$3 \$2 \$I146 \$1 \$I121 M1_routed
+X$15 \$3 \$2 \$I146 \$1 \$I121 M1_routed
+X$16 \$3 \$2 \$I146 \$1 \$I121 M1_routed
+X$17 \$7 \$15 \$I131 \$1 \$I121 M1_routed
+X$18 \$7 \$8 \$I158 \$1 \$I121 M1_routed
+X$19 \$5 \$8 \$I134 \$1 \$I121 M1_routed
+X$20 \$5 \$10 \$I154 \$1 \$I121 M1_routed
+X$21 \$9 \$10 \$I138 \$1 \$I121 M1_routed
+X$22 \$9 \$4 \$I150 \$1 \$I121 M1_routed
+X$23 \$3 \$4 \$I142 \$1 \$I121 M1_routed
+X$24 \$3 \$2 \$I146 \$1 \$I121 M1_routed
+X$25 \$7 \$15 \$I131 \$1 \$I121 M1_routed
+X$26 \$5 \$8 \$I134 \$1 \$I121 M1_routed
+X$27 \$9 \$10 \$I138 \$1 \$I121 M1_routed
+X$28 \$3 \$4 \$I142 \$1 \$I121 M1_routed
+X$29 \$7 \$15 \$I131 \$1 \$I121 M1_routed
+X$30 \$5 \$8 \$I134 \$1 \$I121 M1_routed
+X$31 \$9 \$10 \$I138 \$1 \$I121 M1_routed
+X$32 \$3 \$4 \$I142 \$1 \$I121 M1_routed
+M$1 \$15 \$I131 \$7 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.1005p AD=0.0555p
++ PS=1.34u PD=0.74u
+M$2 \$7 \$I158 \$8 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$3 \$8 \$I134 \$5 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$4 \$5 \$I154 \$10 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$5 \$10 \$I138 \$9 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$6 \$9 \$I150 \$4 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$7 \$4 \$I142 \$3 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$8 \$3 \$I146 \$2 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.1005p
++ PS=0.74u PD=1.34u
+M$9 \$15 \$I131 \$7 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.1005p AD=0.0555p
++ PS=1.34u PD=0.74u
+M$10 \$7 \$I158 \$8 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$11 \$8 \$I134 \$5 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$12 \$5 \$I154 \$10 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$13 \$10 \$I138 \$9 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$14 \$9 \$I150 \$4 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$15 \$4 \$I142 \$3 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$16 \$3 \$I146 \$2 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.1005p
++ PS=0.74u PD=1.34u
+M$17 \$15 \$I131 \$7 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.1005p AD=0.0555p
++ PS=1.34u PD=0.74u
+M$18 \$7 \$I158 \$8 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$19 \$8 \$I134 \$5 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$20 \$5 \$I154 \$10 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$21 \$10 \$I138 \$9 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$22 \$9 \$I150 \$4 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$23 \$4 \$I142 \$3 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$24 \$3 \$I146 \$2 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.1005p
++ PS=0.74u PD=1.34u
+M$25 \$15 \$I131 \$7 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.1005p AD=0.0555p
++ PS=1.34u PD=0.74u
+M$26 \$7 \$I158 \$8 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$27 \$8 \$I134 \$5 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$28 \$5 \$I154 \$10 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$29 \$10 \$I138 \$9 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$30 \$9 \$I150 \$4 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$31 \$4 \$I142 \$3 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.0555p
++ PS=0.74u PD=0.74u
+M$32 \$3 \$I146 \$2 \$I121 sg13_lv_pmos L=0.13u W=0.15u AS=0.0555p AD=0.1005p
++ PS=0.74u PD=1.34u
+.ENDS M1_no_routed
+
+.SUBCKT INV_D1$2 \$1 \$2 \$3 \$4
+X$1 \$4 \$1 \$1 \$3 nmos$7
+X$2 \$2 \$4 \$3 \$2 \$1 pmos$1$2
+.ENDS INV_D1$2
+
+.SUBCKT M1_routed \$1 \$2 \$3 \$4 \$I1
+X$1 \$2 \$1 \$3 \$I1 \$4 pmos$6
+.ENDS M1_routed
+
+.SUBCKT pmos$1$2 \$1 \$2 \$3 \$4 \$6
+M$1 \$1 \$3 \$2 \$4 sg13_lv_pmos L=0.13u W=0.3u AS=0.102p AD=0.102p PS=1.28u
++ PD=1.28u
+.ENDS pmos$1$2
+
+.SUBCKT nmos$7 \$1 \$2 \$3 \$5
+M$1 \$2 \$5 \$1 \$3 sg13_lv_nmos L=0.13u W=0.15u AS=0.1005p AD=0.1005p PS=1.34u
++ PD=1.34u
+.ENDS nmos$7
+
+.SUBCKT pmos$6 \$1 \$2 \$3 \$4 \$6
+.ENDS pmos$6

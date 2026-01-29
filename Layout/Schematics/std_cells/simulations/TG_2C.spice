@@ -1,0 +1,12 @@
+** sch_path: /home/designer/shared/GRO-TDC/std_cells/TG_2C.sch
+**.subckt TG_2C VCTRLN VSS VOUT VIN VDD VCTRLP
+*.iopin VCTRLN
+*.iopin VCTRLP
+*.opin VOUT
+*.ipin VIN
+*.iopin VSS
+*.iopin VDD
+XM1 VOUT VCTRLN VIN VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+XM2 VOUT VCTRLP VIN VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=2
+**.ends
+.end

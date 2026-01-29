@@ -1,0 +1,60 @@
+* Extracted by KLayout with SG13G2 LVS runset on : 26/01/2026 22:16
+
+.SUBCKT FF_D VRESET VD VCLK
+X$159 \$4 VRESET \$5 \$I24 INV_D1
+X$161 \$4 VCLK \$5 \$I21 INV_D1
+X$163 \$4 \$I23 \$5 \$I25 INV_D1
+X$164 VCLK \$I21 \$5 \$4 \$I27 \$I28 TG_2C
+X$168 \$I21 VCLK \$5 \$4 \$I27 \$I26 TG_2C
+X$170 \$4 \$5 \$I24 \$I27 \$I22 NAND_D2
+X$172 \$4 VD \$5 \$I26 INV_D1
+X$175 \$4 \$I22 \$5 \$I28 INV_D1
+X$183 \$I21 VCLK \$5 \$4 \$I29 \$I30 TG_2C
+X$186 VCLK \$I21 \$5 \$4 \$I29 \$I31 TG_2C
+X$189 \$I29 \$I24 \$5 \$4 \$I23 NAND_D3
+X$197 \$4 \$I23 \$5 \$I31 INV_D1
+X$198 \$I22 \$4 \$I30 \$5 INV_D3
+.ENDS FF_D
+
+.SUBCKT NAND_D2 \$1 \$2 VB VA \$5
+M$1 \$5 VA \$6 \$1 sg13_lv_nmos L=0.13u W=0.3u AS=0.102p AD=0.102p PS=1.28u
++ PD=1.28u
+M$2 \$6 VB \$1 \$1 sg13_lv_nmos L=0.13u W=0.9u AS=0.306p AD=0.306p PS=2.48u
++ PD=2.48u
+M$3 \$5 VB \$2 \$2 sg13_lv_pmos L=0.13u W=0.3u AS=0.102p AD=0.102p PS=1.28u
++ PD=1.28u
+M$4 \$2 VA \$5 \$2 sg13_lv_pmos L=0.13u W=0.3u AS=0.102p AD=0.102p PS=1.28u
++ PD=1.28u
+.ENDS NAND_D2
+
+.SUBCKT INV_D3 \$1 \$2 \$4 \$10
+M$1 \$4 \$1 \$2 \$2 sg13_lv_nmos L=0.13u W=0.45u AS=0.2565p AD=0.2565p PS=3.42u
++ PD=3.42u
+M$4 \$10 \$1 \$4 \$10 sg13_lv_pmos L=0.13u W=0.9u AS=0.378p AD=0.378p PS=5.04u
++ PD=5.04u
+.ENDS INV_D3
+
+.SUBCKT TG_2C \$1 \$2 \$3 \$4 VOUT VIN
+M$1 VIN \$2 VOUT \$3 sg13_lv_pmos L=0.13u W=0.3u AS=0.156p AD=0.156p PS=2.08u
++ PD=2.08u
+M$3 VIN \$1 VOUT \$4 sg13_lv_nmos L=0.13u W=0.15u AS=0.1005p AD=0.1005p
++ PS=1.34u PD=1.34u
+.ENDS TG_2C
+
+.SUBCKT INV_D1 \$1 VIN \$3 VOUT
+M$1 \$3 VIN VOUT \$3 sg13_lv_pmos L=0.13u W=0.3u AS=0.102p AD=0.102p PS=1.28u
++ PD=1.28u
+M$2 \$1 VIN VOUT \$1 sg13_lv_nmos L=0.13u W=0.15u AS=0.1005p AD=0.1005p
++ PS=1.34u PD=1.34u
+.ENDS INV_D1
+
+.SUBCKT NAND_D3 VA VB \$3 \$4 \$5
+M$1 \$5 VA \$6 \$4 sg13_lv_nmos L=0.13u W=0.45u AS=0.153p AD=0.153p PS=1.58u
++ PD=1.58u
+M$2 \$6 VB \$4 \$4 sg13_lv_nmos L=0.13u W=1.35u AS=0.459p AD=0.459p PS=3.38u
++ PD=3.38u
+M$3 \$3 VA \$5 \$3 sg13_lv_pmos L=0.13u W=0.45u AS=0.153p AD=0.153p PS=1.58u
++ PD=1.58u
+M$4 \$5 VB \$3 \$3 sg13_lv_pmos L=0.13u W=0.45u AS=0.153p AD=0.153p PS=1.58u
++ PD=1.58u
+.ENDS NAND_D3

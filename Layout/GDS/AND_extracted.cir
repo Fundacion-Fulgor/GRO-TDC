@@ -1,0 +1,24 @@
+* Extracted by KLayout with SG13G2 LVS runset on : 26/01/2026 01:04
+
+.SUBCKT AND VB VA VSS VDD VOUT
+X$1 VA VB VDD VSS \$7 NAND
+X$2 VSS VDD \$7 VOUT INV_D1
+.ENDS AND
+
+.SUBCKT INV_D1 \$1 \$2 VIN \$4
+M$1 \$2 VIN \$4 \$2 sg13_lv_pmos L=0.13u W=0.3u AS=0.102p AD=0.102p PS=1.28u
++ PD=1.28u
+M$2 \$1 VIN \$4 \$1 sg13_lv_nmos L=0.13u W=0.15u AS=0.1005p AD=0.1005p PS=1.34u
++ PD=1.34u
+.ENDS INV_D1
+
+.SUBCKT NAND \$1 VB \$3 \$4 \$5
+M$1 \$5 \$1 \$7 \$4 sg13_lv_nmos L=0.13u W=0.15u AS=0.1005p AD=0.1005p PS=1.34u
++ PD=1.34u
+M$2 \$7 VB \$4 \$4 sg13_lv_nmos L=0.13u W=0.45u AS=0.153p AD=0.153p PS=1.58u
++ PD=1.58u
+M$3 \$3 \$1 \$5 \$3 sg13_lv_pmos L=0.13u W=0.15u AS=0.1005p AD=0.1005p PS=1.34u
++ PD=1.34u
+M$4 \$5 VB \$3 \$3 sg13_lv_pmos L=0.13u W=0.15u AS=0.1005p AD=0.1005p PS=1.34u
++ PD=1.34u
+.ENDS NAND

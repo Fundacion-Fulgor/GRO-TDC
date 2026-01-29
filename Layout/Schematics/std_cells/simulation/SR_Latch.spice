@@ -1,0 +1,18 @@
+** sch_path: /home/designer/shared/GRO-TDC/std_cells/SR_Latch.sch
+.subckt SR_Latch VDD VS QN QP VR VSS
+*.PININFO VDD:B VSS:B VS:I VR:I QP:O QN:O
+x1 VDD QN VS QP VSS NOR
+x2 VDD QP QN VR VSS NOR
+.ends
+
+* expanding   symbol:  /home/designer/shared/GRO-TDC/std_cells/NOR.sym # of pins=5
+** sym_path: /home/designer/shared/GRO-TDC/std_cells/NOR.sym
+** sch_path: /home/designer/shared/GRO-TDC/std_cells/NOR.sch
+.subckt NOR VDD VOUT VA VB VSS
+*.PININFO VDD:B VSS:B VA:I VB:I VOUT:O
+M1 VOUT VA VSS VSS sg13_lv_nmos w=0.45u l=0.13u ng=1 m=1
+M2 VOUT VB VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+M3 VOUT VB net1 VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+M4 net1 VA VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+.ends
+

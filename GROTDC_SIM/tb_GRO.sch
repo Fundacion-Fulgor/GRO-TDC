@@ -1,4 +1,4 @@
-v {xschem version=3.4.8RC file_version=1.2}
+v {xschem version=3.4.8RC file_version=1.3}
 G {}
 K {}
 V {}
@@ -123,7 +123,7 @@ C {lab_wire.sym} 430 -1070 0 0 {name=p21 sig_type=std_logic lab=VDD
 }
 C {lab_wire.sym} 560 -1540 0 0 {name=p13 sig_type=std_logic lab=VDD
 }
-C {SR_Latch.sym} 140 -890 0 0 {name=x1}
+C {/foss/designs/GRO-TDC/std_cells/SR_Latch.sym} 140 -890 0 0 {name=x1}
 C {lab_wire.sym} 230 -1060 0 0 {name=p19 sig_type=std_logic lab=VDD
 }
 C {lab_wire.sym} 120 -1000 0 0 {name=p20 sig_type=std_logic lab=START

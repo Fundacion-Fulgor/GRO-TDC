@@ -12,7 +12,7 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
+x1=5.3243167e-09
 divx=5
 subdivx=1
 
@@ -29,7 +29,7 @@ color="17 8 10"
 node="IN0
 IN1
 IN2"
-x2=4.0243869e-08}
+x2=5.0380316e-08}
 B 2 2580 1560 3380 1960 {flags=graph
 y2=1.5
 ypos1=0
@@ -37,8 +37,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -62,8 +62,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -76,7 +76,7 @@ hilight_wave=0
 
 
 y1=-0.2
-color="17 8 10 11 7"
+color="17 8 10 7 10"
 node="START
 STOP
 DECLK
@@ -90,8 +90,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -113,8 +113,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -137,8 +137,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -160,8 +160,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -185,8 +185,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -206,8 +206,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -227,8 +227,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -248,8 +248,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -269,8 +269,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -292,8 +292,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -315,8 +315,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -336,8 +336,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -357,8 +357,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -378,8 +378,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -399,8 +399,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -422,8 +422,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -443,8 +443,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -464,8 +464,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -485,8 +485,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -506,8 +506,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -529,8 +529,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -550,8 +550,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -571,8 +571,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -591,8 +591,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -613,8 +613,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -634,8 +634,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -657,8 +657,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -678,8 +678,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -699,8 +699,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -719,8 +719,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -741,8 +741,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -762,8 +762,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -784,8 +784,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -805,8 +805,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -827,8 +827,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -848,8 +848,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -869,8 +869,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -889,8 +889,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -911,8 +911,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -932,8 +932,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -954,8 +954,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -975,8 +975,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-3.3878304e-09
-x2=4.0243869e-08
+x1=5.3243167e-09
+x2=5.0380316e-08
 divx=5
 subdivx=1
 
@@ -989,6 +989,30 @@ hilight_wave=0
 y1=-0.4
 color=10
 node=ADDER[7]}
+B 2 1680 670 2480 1070 {flags=graph
+y2=1.5
+ypos1=0
+ypos2=2
+divy=5
+subdivy=1
+unity=1
+x1=5.3243167e-09
+x2=5.0380316e-08
+divx=5
+subdivx=1
+
+
+dataset=-1
+unitx=1
+logx=0
+logy=0
+hilight_wave=0
+
+
+y1=-0.2
+color="17 7"
+node="DECLK
+DECLK2"}
 N 3620 990 3620 1020 {lab=GND}
 N 3620 890 3620 930 {lab=VSS}
 N 3690 990 3690 1020 {lab=VSS}
@@ -1076,7 +1100,7 @@ C {lab_wire.sym} 3690 1020 0 0 {name=p2 sig_type=std_logic lab=VSS
 }
 C {devices/launcher.sym} 4065 815 0 0 {name=h5
 descr="load waves Ctrl + left click" 
-tclcommand="xschem raw_read $netlist_dir/GROTDC_tb.raw tran"
+tclcommand="xschem raw_read $netlist_dir/GRO_TDC_tb.raw tran"
 }
 C {devices/launcher.sym} 4065 755 0 0 {name=h1
 descr="simulate" 
@@ -1194,7 +1218,7 @@ wrdata GRO_TDC_tb.raw time START STOP DECLK RESET IN0 IN1 IN2 K0 K1 K2 D0_0 D0_1
 
 .endc
 "
-}
+spice_ignore=true}
 C {/foss/designs/GRO-TDC/std_cells/Counters_6bits.sym} 4770 1470 0 0 {name=x5
 }
 C {/foss/designs/GRO-TDC/std_cells/Counters_regs_6bits.sym} 5210 1500 0 0 {name=x6
@@ -1323,4 +1347,123 @@ C {lab_wire.sym} 3910 1220 0 0 {name=p45 sig_type=std_logic lab=VSS
 C {lab_wire.sym} 3910 1090 0 1 {name=p46 sig_type=std_logic lab=DECLK2
 }
 C {vsource.sym} 3910 1160 0 0 {name=V3 value="dc 0 ac 0 pulse(0, 1.2, 30n, 500p, 500p, 100n)" savecurrent=false
+}
+C {code.sym} 4500 970 0 0 {name=NGSPICE2 only_toplevel=true 
+value="
+.param temp=65
+
+* Agrega una resistencia gigante en los nodos flotantes
+.OPTION RSHUNT=1e9
+
+* Agrega un cap pequeño a cada nodo
+* evita dv/dt infinito
+.OPTION CSHUNT=1e-15
+
+* Conducción minima en Junturas de diodos
+* diodos duros
+.options gmin=1e-10
+
+*resistencia serie global (a fuentes ideales e inductores)
+.option rseries = 1e-4
+
+* integrador robusto
+* ayuda a resolver la no linealidad
+.options method=gear
+
+* limita el orden del integrador
+* limita cuantos pasos anteriores usa el integrador
+.options maxord=2
+
+* tolerancias : error relativo (%) - error absoluto en voltaje - error absoluto en corriente
+.options reltol=1e-2 vabstol=1e-4 iabstol=1e-9
+
+* paciencia del solver: DC - Transitorio - Newton interno
+
+.option ITL1=1000 ITL2=400 ITL4=500
+
+
+
+
+* .nodeset all=0
+.ic v(START)=0 v(STOP)=0 v(DECLK)=0 v(DECLK2)=0 v(RESET)=0
+
+
+.ic v(IN0) v(IN1) v(IN2)
+.ic v(K0) v(K1) v(K2)
+.ic v("D0[0]")=0 v("D0[1]")=0 v("D0[2]")=0 
+.ic v("D0[3]")=0 v("D0[4]")=0 v("D0[5]")=0 
+.ic v("D1[0]")=0 v("D1[1]")=0 v("D1[2]")=0
+.ic v("D1[3]")=0 v("D1[4]")=0 v("D1[5]")=0
+.ic v("D2[0]")=0 v("D2[1]")=0 v("D2[2]")=0
+.ic v("D2[3]")=0 v("D2[4]")=0 v("D2[5]")=0
+.ic v("C0_B[0]")=0 v("C1_B[0]")=0 v("C2_B[0]")=0
+.ic v("C0_B[1]")=0 v("C1_B[1]")=0 v("C2_B[1]")=0
+.ic v("C0_B[2]")=0 v("C1_B[2]")=0 v("C2_B[2]")=0
+.ic v("C0_B[3]")=0 v("C1_B[3]")=0 v("C2_B[3]")=0
+.ic v("C0_B[4]")=0 v("C1_B[4]")=0 v("C2_B[4]")=0
+.ic v("C0_B[5]")=0 v("C1_B[5]")=0 v("C2_B[5]")=0
+.ic v("S1[0]")=0 v("S1[1]")=0 v("S1[2]")=0 
+.ic v("S1[3]")=0 v("S1[4]")=0 v("S1[5]")=0 
+.ic v(COUT1)=0 
+.ic v("S2[0]")=0 v("S2[1]")=0 v("S2[2]")=0 
+.ic v("S2[3]")=0 v("S2[4]")=0 v("S2[5]") v("S2[6]")=0
+.ic v(COUT2)=0
+.ic v("ADDER[0]")=0 v("ADDER[1]")=0 v("ADDER[2]")=0
+.ic v("ADDER[3]")=0 v("ADDER[4]")=0 v("ADDER[5]")=0
+.ic v("ADDER[6]")=0 v("ADDER[7]")=0
+
+.control
+* Sources
+save v(START) v(STOP) v(DECLK) v(DECLK2) v(RESET)
+save v(START_PAD) v(STOP_PAD) v(RESET_PAD)
+save v(VSS) v(VDD) v(EN)
+
+* GRO
+save v(IN0) v(IN1) v(IN2)
+
+* Buffers
+save v(K0) v(K1) v(K2)
+
+* Counters Reg (BUS → SIEMPRE con comillas)
+save v("D0[0]") v("D0[1]") v("D0[2]") 
+save v("D0[3]") v("D0[4]") v("D0[5]") 
+save v("D1[0]") v("D1[1]") v("D1[2]")
+save v("D1[3]") v("D1[4]") v("D1[5]")
+save v("D2[0]") v("D2[1]") v("D2[2]")
+save v("D2[3]") v("D2[4]") v("D2[5]")
+
+
+* NUEVO: C0_B[4], C1_B[4], C2_B[4] (bits 0 a 5)
+save v("C0_B[0]") v("C1_B[0]") v("C2_B[0]")
+save v("C0_B[1]") v("C1_B[1]") v("C2_B[1]")
+save v("C0_B[2]") v("C1_B[2]") v("C2_B[2]")
+save v("C0_B[3]") v("C1_B[3]") v("C2_B[3]")
+save v("C0_B[4]") v("C1_B[4]") v("C2_B[4]")
+save v("C0_B[5]") v("C1_B[5]") v("C2_B[5]")
+
+
+
+* FA
+save v("S1[0]") v("S1[1]") v("S1[2]") 
+save v("S1[3]") v("S1[4]") v("S1[5]") 
+save v(COUT1) 
+save v("S2[0]") v("S2[1]") v("S2[2]") 
+save v("S2[3]") v("S2[4]") v("S2[5]") v("S2[6]")
+save v(COUT2)
+
+* FA Regs
+save v("ADDER[0]") v("ADDER[1]") v("ADDER[2]")
+save v("ADDER[3]") v("ADDER[4]") v("ADDER[5]")
+save v("ADDER[6]") v("ADDER[7]")
+
+* uic: saltearse el punto de operación
+*tran 5p 100n 0 5p uic
+* .tran <tstep> <tstop> [tstart] [tmax] [uic]
+* tmax Limita el paso máximo que puede usar el integrador
+tran 10p 110n 0 95p
+
+write GRO_TDC_tb.raw
+
+.endc
+"
 }
