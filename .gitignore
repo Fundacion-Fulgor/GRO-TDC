@@ -1,0 +1,30 @@
+# Salidas generadas de ejecucion y extraccion
+runs/
+simulations/*.raw
+simulations/*.spice
+simulations/*.log
+*.cir
+*.raw
+*.log
+*.out
+*.lyrdb
+*.lyp
+
+# Archivos de respaldo y temporales
+*~
+*.bak
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+xschemrc:Zone.Identifier
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Preservar directorios de archivo y datos fuente
+!archive/
+!design/
+!verification/
+!drc/

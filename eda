@@ -1,0 +1,474 @@
+#!/usr/bin/env python3
+import argparse
+import os
+import subprocess
+import sys
+from pathlib import Path
+
+DEFAULT_SCHEMATIC = "design/schematic/GROTDC.sch"
+DEFAULT_CONTAINER = "iic-osic-tools2"
+PDK_NAME = "ihp-sg13g2"
+
+SUBMODULE_GUIDE = (
+    "Para actualizar una dependencia registre el nuevo puntero con 'git add <submódulo>', "
+    "o restaure los submódulos ejecutando './eda setup'."
+)
+
+
+def get_repo_root() -> Path:
+    return Path(__file__).resolve().parent
+
+
+def is_inside_container_or_native(args_native: bool) -> bool:
+    if args_native:
+        return True
+    if os.environ.get("EDA_NATIVE") == "1":
+        return True
+    if os.environ.get("EDA_CONTAINER_ACTIVE") == "1":
+        return True
+    if os.path.exists("/run/.containerenv"):
+        return True
+    return False
+
+
+def reexec_in_container(argv_forward: list[str]) -> int:
+    container = os.environ.get("EDA_CONTAINER", DEFAULT_CONTAINER)
+    abs_script = str(Path(__file__).resolve())
+    cmd = ["distrobox", "enter", container, "--", "python3", abs_script, "--native"] + argv_forward
+    env = os.environ.copy()
+    env["EDA_CONTAINER_ACTIVE"] = "1"
+    try:
+        res = subprocess.run(cmd, env=env)
+        return res.returncode
+    except FileNotFoundError:
+        sys.stderr.write(
+            "Error: No se encontró la herramienta 'distrobox'. Instale distrobox o use '--native' (o configure EDA_NATIVE=1) para ejecución local.\n"
+        )
+        return 1
+
+
+def check_submodules_clean_and_aligned(repo_root: Path) -> tuple[bool, str]:
+    try:
+        proc = subprocess.run(
+            ["git", "submodule", "status", "--recursive"],
+            cwd=str(repo_root),
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            check=True,
+        )
+    except subprocess.CalledProcessError as e:
+        return False, f"Error al ejecutar git submodule status: {e.stderr.strip()}"
+    except FileNotFoundError:
+        return False, "Error: No se encontró el comando 'git'."
+
+    lines = [line for line in proc.stdout.splitlines() if line.strip()]
+    if not lines:
+        return True, ""
+
+    for line in lines:
+        status_char = line[0]
+        rest = line[1:].strip().split()
+        if not rest:
+            continue
+        sub_path_rel = rest[1]
+        if status_char == "-":
+            return False, f"El submódulo '{sub_path_rel}' no está inicializado."
+        if status_char == "+":
+            return False, f"El commit actual del submódulo '{sub_path_rel}' no coincide con el puntero registrado (gitlink)."
+        if status_char == "U":
+            return False, f"El submódulo '{sub_path_rel}' presenta conflictos de fusión no resueltos."
+
+        sub_full_path = repo_root / sub_path_rel
+        if not sub_full_path.is_dir():
+            return False, f"El directorio del submódulo '{sub_path_rel}' no existe."
+
+        try:
+            status_proc = subprocess.run(
+                ["git", "-C", str(sub_full_path), "status", "--porcelain"],
+                cwd=str(repo_root),
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                check=True,
+            )
+            if status_proc.stdout.strip():
+                return False, f"El submódulo '{sub_path_rel}' contiene cambios locales no confirmados (árbol de trabajo sucio)."
+        except subprocess.CalledProcessError as e:
+            return False, f"Error al comprobar el estado del submódulo '{sub_path_rel}': {e.stderr.strip()}"
+
+    return True, ""
+
+
+def resolve_schematic(schematic_arg: str, repo_root: Path) -> tuple[Path | None, str]:
+    arg_path = Path(schematic_arg)
+    if arg_path.is_absolute():
+        resolved = arg_path.resolve()
+    else:
+        resolved = (repo_root / arg_path).resolve()
+
+    if resolved.suffix != ".sch":
+        return None, f"El archivo debe tener extensión .sch: {schematic_arg}"
+
+    if not resolved.is_file():
+        return None, f"El archivo esquemático no existe: {schematic_arg}"
+
+    design_dir = (repo_root / "design").resolve()
+    verif_dir = (repo_root / "verification").resolve()
+    archive_dir = (repo_root / "archive").resolve()
+
+    def is_subpath(p: Path, base: Path) -> bool:
+        try:
+            p.relative_to(base)
+            return True
+        except ValueError:
+            return False
+
+    if is_subpath(resolved, archive_dir):
+        return None, f"No se permiten esquemáticos dentro de carpetas archivadas (archive/): {schematic_arg}"
+
+    if not (is_subpath(resolved, design_dir) or is_subpath(resolved, verif_dir)):
+        return None, f"Solo se permiten esquemáticos dentro de 'design/' o 'verification/': {schematic_arg}"
+
+    return resolved, ""
+
+
+def get_eda_env(repo_root: Path) -> dict[str, str]:
+    env = os.environ.copy()
+    env["PDK_ROOT"] = str((repo_root / "IHP-Open-PDK").resolve())
+    env["PDK"] = PDK_NAME
+    return env
+
+
+def cmd_setup(repo_root: Path) -> int:
+    try:
+        proc = subprocess.run(
+            ["git", "submodule", "status", "--recursive"],
+            cwd=str(repo_root),
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            check=True,
+        )
+    except subprocess.CalledProcessError as e:
+        sys.stderr.write(f"Error al verificar estado de submódulos: {e.stderr.strip()}\n")
+        return 1
+    except FileNotFoundError:
+        sys.stderr.write("Error: No se encontró el comando 'git'.\n")
+        return 1
+
+    for line in proc.stdout.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        status_char = line[0]
+        if status_char == "-":
+            continue
+        parts = line.split()
+        if len(parts) < 2:
+            continue
+        sub_rel_path = parts[1]
+        sub_full_path = repo_root / sub_rel_path
+        if sub_full_path.is_dir():
+            status_proc = subprocess.run(
+                ["git", "-C", str(sub_full_path), "status", "--porcelain"],
+                cwd=str(repo_root),
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+            )
+            if status_proc.returncode == 0 and status_proc.stdout.strip():
+                sys.stderr.write(
+                    f"Error: El submódulo '{sub_rel_path}' tiene cambios no confirmados en su árbol de trabajo.\n"
+                    "Operación cancelada para preservar los cambios locales del equipo.\n"
+                )
+                return 1
+
+    try:
+        subprocess.run(
+            ["git", "submodule", "update", "--init", "--recursive"],
+            cwd=str(repo_root),
+            check=True,
+        )
+        print("Submódulos inicializados y actualizados correctamente según los gitlinks registrados.")
+        return 0
+    except subprocess.CalledProcessError as e:
+        sys.stderr.write(f"Error al actualizar los submódulos: {e}\n")
+        return 1
+
+
+def cmd_doctor(repo_root: Path) -> int:
+    success = True
+    print("Verificando entorno EDA en GROTDC...")
+
+    ok, msg = check_submodules_clean_and_aligned(repo_root)
+    if ok:
+        print("[OK] Submódulos: Inicializados, limpios y alineados con los gitlinks registrados.")
+    else:
+        print(f"[FALLO] Submódulos: {msg}")
+        sys.stderr.write(f"{SUBMODULE_GUIDE}\n")
+        success = False
+
+    env = get_eda_env(repo_root)
+    try:
+        xschem_proc = subprocess.run(
+            ["xschem", "--version"],
+            env=env,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+        combined = (xschem_proc.stdout or "") + (xschem_proc.stderr or "")
+        ver_lines = [line.strip() for line in combined.splitlines() if "xschem" in line.lower() or "version" in line.lower()]
+        ver_text = ver_lines[0] if ver_lines else combined.strip().splitlines()[-1] if combined.strip() else "Detectado"
+        if xschem_proc.returncode == 0:
+            print(f"[OK] Xschem: {ver_text}")
+        else:
+            print(f"[FALLO] Xschem retornó error (código {xschem_proc.returncode}): {combined.strip()}")
+            success = False
+    except FileNotFoundError:
+        print("[FALLO] Xschem: No se encontró el ejecutable 'xschem'.")
+        success = False
+
+    rcfile = repo_root / "xschemrc"
+    if rcfile.is_file():
+        print(f"[OK] xschemrc: Configuración presente en {rcfile}")
+    else:
+        print(f"[AVISO] xschemrc: No presente en {rcfile}")
+
+    pdk_dir = repo_root / "IHP-Open-PDK"
+    if pdk_dir.is_dir():
+        print(f"[OK] PDK_ROOT: {pdk_dir}")
+    else:
+        print(f"[FALLO] PDK_ROOT: Directorio {pdk_dir} inexistente.")
+        success = False
+
+    if success:
+        print("Doctor: Todas las verificaciones pasaron exitosamente.")
+        return 0
+    else:
+        sys.stderr.write("Doctor: Se detectaron problemas en el entorno.\n")
+        return 1
+
+
+def cmd_open(schematic_arg: str, repo_root: Path) -> int:
+    ok, msg = check_submodules_clean_and_aligned(repo_root)
+    if not ok:
+        sys.stderr.write(f"Error en verificación de submódulos: {msg}\n{SUBMODULE_GUIDE}\n")
+        return 1
+
+    target_path, err = resolve_schematic(schematic_arg, repo_root)
+    if not target_path:
+        sys.stderr.write(f"Error: {err}\n")
+        return 1
+
+    rcfile = (repo_root / "xschemrc").resolve()
+    if not rcfile.is_file():
+        sys.stderr.write(f"Error: Archivo de configuración xschemrc no encontrado en {rcfile}\n")
+        return 1
+
+    env = get_eda_env(repo_root)
+    cmd = [
+        "xschem",
+        "--rcfile",
+        str(rcfile),
+        str(target_path),
+    ]
+    try:
+        proc = subprocess.run(cmd, env=env)
+        return proc.returncode
+    except FileNotFoundError:
+        sys.stderr.write("Error: No se encontró el ejecutable 'xschem'.\n")
+        return 1
+
+
+def cmd_netlist(schematic_arg: str, lvs: bool, repo_root: Path) -> int:
+    ok, msg = check_submodules_clean_and_aligned(repo_root)
+    if not ok:
+        sys.stderr.write(f"Error en verificación de submódulos: {msg}\n{SUBMODULE_GUIDE}\n")
+        return 1
+
+    target_path, err = resolve_schematic(schematic_arg, repo_root)
+    if not target_path:
+        sys.stderr.write(f"Error: {err}\n")
+        return 1
+
+    rcfile = (repo_root / "xschemrc").resolve()
+    if not rcfile.is_file():
+        sys.stderr.write(f"Error: Archivo de configuración xschemrc no encontrado en {rcfile}\n")
+        return 1
+
+    stem = target_path.stem
+    out_dir = (repo_root / "runs" / stem).resolve()
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out_file = out_dir / f"{stem}.spice"
+
+    if out_file.exists():
+        out_file.unlink()
+
+    preinit_parts = [
+        f"set netlist_dir {{{str(out_dir)}}}",
+        "set local_netlist_dir 0",
+    ]
+    if lvs:
+        preinit_parts.extend(["set lvs_netlist 1", "set spiceprefix 0"])
+    else:
+        preinit_parts.append("set lvs_netlist 0")
+
+    preinit = "; ".join(preinit_parts)
+
+    cmd = [
+        "xschem",
+        "-n",
+        "-s",
+        "-x",
+        "-q",
+        "--rcfile",
+        str(rcfile),
+        "--preinit",
+        preinit,
+        "-o",
+        str(out_dir),
+        str(target_path),
+    ]
+
+    env = get_eda_env(repo_root)
+    try:
+        proc = subprocess.run(
+            cmd,
+            env=env,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+    except FileNotFoundError:
+        sys.stderr.write("Error: No se encontró el ejecutable 'xschem'.\n")
+        return 1
+
+    combined_output = (proc.stdout or "") + "\n" + (proc.stderr or "")
+
+    error_indicators = [
+        "symbol not found",
+        "is missing !!!!",
+        "unable to open file",
+        "error:",
+        "evaluation of script",
+    ]
+    has_error_in_logs = any(ind in combined_output.lower() for ind in error_indicators)
+
+    if proc.returncode != 0 or has_error_in_logs:
+        sys.stderr.write("Error durante la generación de netlist con Xschem:\n")
+        if combined_output.strip():
+            sys.stderr.write(f"{combined_output.strip()}\n")
+        if out_file.exists():
+            out_file.unlink()
+        return 1
+
+    if not out_file.is_file() or out_file.stat().st_size == 0:
+        sys.stderr.write(f"Error: No se generó el archivo de netlist esperado o está vacío: {out_file}\n")
+        return 1
+
+    try:
+        content = out_file.read_text(encoding="utf-8", errors="replace")
+    except Exception as e:
+        sys.stderr.write(f"Error al leer el archivo generado {out_file}: {e}\n")
+        return 1
+
+    netlist_error_indicators = [
+        "is missing",
+        "missing !!!!",
+    ]
+    if any(ind in content.lower() for ind in netlist_error_indicators):
+        sys.stderr.write(f"Error: La netlist generada en {out_file} contiene símbolos no resueltos o componentes faltantes.\n")
+        out_file.unlink()
+        return 1
+
+    print(f"Netlist generada exitosamente en: {out_file}")
+    return 0
+
+
+def main(argv: list[str] | None = None) -> int:
+    if argv is None:
+        argv = sys.argv[1:]
+
+    parser = argparse.ArgumentParser(
+        prog="eda",
+        description="Herramienta CLI para automatización del flujo EDA en GROTDC.",
+    )
+    parser.add_argument(
+        "--native",
+        action="store_true",
+        default=False,
+        help="Ejecuta los comandos EDA directamente en el host sin usar distrobox.",
+    )
+    subparsers = parser.add_subparsers(dest="command", metavar="COMANDO")
+
+    p_setup = subparsers.add_parser(
+        "setup",
+        help="Inicializa o restaura submódulos de git según los punteros registrados.",
+    )
+    p_setup.add_argument("--native", action="store_true", default=argparse.SUPPRESS, help=argparse.SUPPRESS)
+
+    p_doctor = subparsers.add_parser(
+        "doctor",
+        help="Verifica el estado del entorno EDA, submódulos y herramientas.",
+    )
+    p_doctor.add_argument("--native", action="store_true", default=argparse.SUPPRESS, help="Ejecuta directamente en el host.")
+
+    p_open = subparsers.add_parser(
+        "open",
+        help="Abre un esquemático en la interfaz gráfica de Xschem.",
+    )
+    p_open.add_argument(
+        "schematic",
+        nargs="?",
+        default=DEFAULT_SCHEMATIC,
+        help=f"Ruta al archivo esquemático (.sch). Por defecto: {DEFAULT_SCHEMATIC}.",
+    )
+    p_open.add_argument("--native", action="store_true", default=argparse.SUPPRESS, help="Ejecuta directamente en el host.")
+
+    p_netlist = subparsers.add_parser(
+        "netlist",
+        help="Genera la netlist SPICE a partir de un esquemático.",
+    )
+    p_netlist.add_argument(
+        "schematic",
+        nargs="?",
+        default=DEFAULT_SCHEMATIC,
+        help=f"Ruta al archivo esquemático (.sch). Por defecto: {DEFAULT_SCHEMATIC}.",
+    )
+    p_netlist.add_argument(
+        "--lvs",
+        action="store_true",
+        help="Configurar netlist para LVS (lvs_netlist=1, spiceprefix=0).",
+    )
+    p_netlist.add_argument("--native", action="store_true", default=argparse.SUPPRESS, help="Ejecuta directamente en el host.")
+
+    args = parser.parse_args(argv)
+
+    if not args.command:
+        parser.print_help()
+        return 1
+
+    repo_root = get_repo_root()
+
+    if args.command == "setup":
+        return cmd_setup(repo_root)
+
+    is_native = is_inside_container_or_native(getattr(args, "native", False))
+    if not is_native:
+        forwarded = [a for a in argv if a != "--native"]
+        return reexec_in_container(forwarded)
+
+    if args.command == "doctor":
+        return cmd_doctor(repo_root)
+    elif args.command == "open":
+        return cmd_open(args.schematic, repo_root)
+    elif args.command == "netlist":
+        return cmd_netlist(args.schematic, args.lvs, repo_root)
+
+    return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())
