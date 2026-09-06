@@ -1,6 +1,6 @@
 # 8-bit Gated Ring Oscillator Time-to-Digital Converter (GRO-TDC)
 
-Este repositorio contiene el diseño, integración y banco de pruebas del **GRO-TDC de 8 bits** desarrollado por fellows de Fundación FULGOR para el programa de tapeout UNIC-CASS en la tecnología open-source **IHP SG13G2 (130 nm)**.
+Este repositorio contiene el diseño, integración y banco de pruebas del **GRO-TDC de 8 bits** desarrollado por becarios de Fundación FULGOR para el programa de tapeout UNIC-CASS en la tecnología open-source **IHP SG13G2 (130 nm)**.
 
 ---
 
@@ -10,25 +10,25 @@ La estructura reproducible del repositorio separa fuentes de diseño, verificaci
 
 ```text
 GRO-TDC/
-├── .gitmodules              # Declaración de submódulos fijados a commits exactos
+├── .gitmodules              # Declaración de submódulos fijados a commits exactos (PDK e IOCells)
 ├── .gitignore               # Exclusión de archivos generados, temporales y extracciones
 ├── xschemrc                 # Configuración portable de rutas para Xschem
 ├── eda                      # Herramienta raíz para setup, diagnóstico, apertura y netlisting
-├── tests/                   # Pruebas unitarias de la infraestructura EDA
+├── tests/                   # Pruebas unitarias de la herramienta
 ├── design/
-│   ├── schematic/           # Fuentes esquemáticas (.sch) y símbolos (.sym) del núcleo
+│   ├── schematic/           # Fuentes esquemáticas (.sch) y símbolos (.sym)
 │   └── layout/              # Vistas físicas (.gds) y registros de integración
 ├── verification/
 │   └── testbenches/         # Bancos de pruebas esquemáticos (.sch) de bloques y celdas
 ├── drc/                     # Reglas y reportes de DRC en KLayout (minimal y maximal)
 ├── archive/                 # Paquetes zip históricos, esquemáticos antiguos y corridas previas
 ├── IHP-Open-PDK/            # Submódulo: PDK oficial IHP-GmbH/IHP-Open-PDK (rama dev)
-└── openpdk-libraries/       # Submódulo: biblioteca de celdas openic-org (rama main)
+└── openpdk-libraries/       # Submódulo: biblioteca de iocells openic-org (rama main)
 ```
 
 ---
 
-## 2. Puesta en Marcha Reproducible
+## 2. Puesta en Marcha
 
 ### Clonar el repositorio con submódulos
 Si clona por primera vez:
@@ -83,7 +83,7 @@ Generar netlist para LVS (habilita modo subcircuito y prefijos compatibles con N
 
 ## 4. Fijar y Actualizar Dependencias a Commits Específicos
 
-Las versiones del PDK y de las celdas de IO **no dependen de la instalación personal de cada desarrollador**, sino de punteros exactos controlados por Git:
+Las versiones del PDK y de las celdas de IO **no dependen de la instalación personal de cada diseñador**, sino de punteros exactos controlados por Git:
 
 - **PDK**: `IHP-Open-PDK` apunta al repositorio oficial `https://github.com/IHP-GmbH/IHP-Open-PDK.git` en la rama `dev`.
 - **Celdas IO**: `openpdk-libraries` apunta a `https://github.com/openic-org/openpdk-libraries.git` en la rama `main`.
