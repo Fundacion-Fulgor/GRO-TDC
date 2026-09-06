@@ -1,0 +1,44 @@
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/Delay_cell.sch
+.subckt Delay_cell VDD IN OUT1 OUT2 VSS
+*.PININFO IN:I VDD:B VSS:B OUT1:O OUT2:O
+x5[1] VDD net1 IN VSS INV_D1
+x5[0] VDD net1 IN VSS INV_D1
+x6[3] VDD OUT1 net1 VSS INV_D1
+x6[2] VDD OUT1 net1 VSS INV_D1
+x6[1] VDD OUT1 net1 VSS INV_D1
+x6[0] VDD OUT1 net1 VSS INV_D1
+x7[7] VDD net2 OUT1 VSS INV_D1
+x7[6] VDD net2 OUT1 VSS INV_D1
+x7[5] VDD net2 OUT1 VSS INV_D1
+x7[4] VDD net2 OUT1 VSS INV_D1
+x7[3] VDD net2 OUT1 VSS INV_D1
+x7[2] VDD net2 OUT1 VSS INV_D1
+x7[1] VDD net2 OUT1 VSS INV_D1
+x7[0] VDD net2 OUT1 VSS INV_D1
+x8[15] VDD OUT2 net2 VSS INV_D1
+x8[14] VDD OUT2 net2 VSS INV_D1
+x8[13] VDD OUT2 net2 VSS INV_D1
+x8[12] VDD OUT2 net2 VSS INV_D1
+x8[11] VDD OUT2 net2 VSS INV_D1
+x8[10] VDD OUT2 net2 VSS INV_D1
+x8[9] VDD OUT2 net2 VSS INV_D1
+x8[8] VDD OUT2 net2 VSS INV_D1
+x8[7] VDD OUT2 net2 VSS INV_D1
+x8[6] VDD OUT2 net2 VSS INV_D1
+x8[5] VDD OUT2 net2 VSS INV_D1
+x8[4] VDD OUT2 net2 VSS INV_D1
+x8[3] VDD OUT2 net2 VSS INV_D1
+x8[2] VDD OUT2 net2 VSS INV_D1
+x8[1] VDD OUT2 net2 VSS INV_D1
+x8[0] VDD OUT2 net2 VSS INV_D1
+.ends
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D1.sym # of pins=4
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D1.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D1.sch
+.subckt INV_D1 VDD VOUT VIN VSS
+*.PININFO VDD:B VSS:B VOUT:O VIN:I
+M2 VOUT VIN VDD VDD sg13_lv_pmos w=0.3u l=0.13u ng=1 m=1
+M1 VOUT VIN VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+.ends
+

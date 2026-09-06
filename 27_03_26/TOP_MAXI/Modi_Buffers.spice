@@ -1,0 +1,50 @@
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/Modi_Buffers.sch
+.subckt Modi_Buffers K0 IN0 VDD IN1 VSS K1 K2 IN2
+*.PININFO IN0:I IN1:I IN2:I K0:O K1:O K2:O VDD:B VSS:B
+x1[1] VDD net1 IN0 VSS INV_D1
+x1[0] VDD net1 IN0 VSS INV_D1
+x2[1] VDD K0 net1 VSS INV_D2
+x2[0] VDD K0 net1 VSS INV_D2
+x3 VDD net1 K0 VSS INV05
+x3[1] VDD net2 IN1 VSS INV_D1
+x3[0] VDD net2 IN1 VSS INV_D1
+x4[1] VDD net3 IN2 VSS INV_D1
+x4[0] VDD net3 IN2 VSS INV_D1
+x5[1] VDD K1 net2 VSS INV_D2
+x5[0] VDD K1 net2 VSS INV_D2
+x6[1] VDD K2 net3 VSS INV_D2
+x6[0] VDD K2 net3 VSS INV_D2
+x1 VDD net2 K1 VSS INV05
+x2 VDD net3 K2 VSS INV05
+.ends
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D1.sym # of pins=4
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D1.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D1.sch
+.subckt INV_D1 VDD VOUT VIN VSS
+*.PININFO VDD:B VSS:B VOUT:O VIN:I
+M2 VOUT VIN VDD VDD sg13_lv_pmos w=0.3u l=0.13u ng=1 m=1
+M1 VOUT VIN VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D2.sym # of pins=4
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D2.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D2.sch
+.subckt INV_D2 VDD VOUT VIN VSS
+*.PININFO VDD:B VSS:B VOUT:O VIN:I
+M1 VOUT VIN VSS VSS sg13_lv_nmos w=0.3u l=0.13u ng=1 m=1
+M2 VOUT VIN VDD VDD sg13_lv_pmos w=0.3u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV05.sym # of pins=4
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV05.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV05.sch
+.subckt INV05 VDD VOUT VIN VSS
+*.PININFO VDD:B VSS:B VOUT:O VIN:I
+M1 net1 VIN VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+M3 VOUT VIN VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+M2 VOUT VIN net1 VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+.ends
+

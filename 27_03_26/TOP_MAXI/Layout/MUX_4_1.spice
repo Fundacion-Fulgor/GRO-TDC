@@ -1,0 +1,42 @@
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/MUX_4_1.sch
+.subckt MUX_4_1 VINA VINB VDD VOUT VS[1] VS[0] VINC VSS VIND
+*.PININFO VOUT:O VDD:B VSS:B VINA:I VINB:I VINC:I VIND:I VS[1:0]:I
+x3 VDD VINA net1 VS[0] VINB VSS MUX_2_1
+x1 VDD VINC net2 VS[0] VIND VSS MUX_2_1
+x2 VDD net1 VOUT VS[1] net2 VSS MUX_2_1
+.ends
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/MUX_2_1.sym # of pins=6
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/MUX_2_1.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/MUX_2_1.sch
+.subckt MUX_2_1 VDD VINA VOUT VS VINB VSS
+*.PININFO VOUT:O VINA:I VINB:I VS:I VDD:B VSS:B
+x3 VDD net1 VINA VSS INV_D1
+x4 VDD net3 VS VSS INV_D1
+x5 VDD net2 VINB VSS INV_D1
+x6 VSS VSS VOUT net1 VDD VDD TG_2C
+x7 net3 VSS VOUT net1 VDD VS TG_2C
+x1 VS VSS VOUT net2 VDD net3 TG_2C
+x2 VSS VSS VOUT net2 VDD VDD TG_2C
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D1.sym # of pins=4
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D1.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D1.sch
+.subckt INV_D1 VDD VOUT VIN VSS
+*.PININFO VDD:B VSS:B VOUT:O VIN:I
+M2 VOUT VIN VDD VDD sg13_lv_pmos w=0.3u l=0.13u ng=1 m=1
+M1 VOUT VIN VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/TG_2C.sym # of pins=6
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/TG_2C.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/TG_2C.sch
+.subckt TG_2C VCTRLN VSS VOUT VIN VDD VCTRLP
+*.PININFO VCTRLN:B VCTRLP:B VOUT:O VIN:I VSS:B VDD:B
+M1 VOUT VCTRLN VIN VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+M2 VOUT VCTRLP VIN VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=2
+.ends
+

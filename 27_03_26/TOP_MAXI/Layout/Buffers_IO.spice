@@ -1,0 +1,56 @@
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/Buffers_IO.sch
+.subckt Buffers_IO DRV_START VDD START VSS DRV_STOP STOP DRV_RESET RESET DRV_ADDER ADDER DRV_CTRL[2] DRV_CTRL[1] DRV_CTRL[0]
++ CTRL[2] CTRL[1] CTRL[0]
+*.PININFO DRV_START:I VDD:B VSS:B DRV_STOP:I DRV_RESET:I ADDER:I START:O STOP:O RESET:O DRV_ADDER:O CTRL[2:0]:I DRV_CTRL[2:0]:O
+x1 VDD DRV_START VSS START Buffers
+x2 VDD DRV_STOP VSS STOP Buffers
+x3 VDD DRV_RESET VSS RESET Buffers
+x6 VDD ADDER VSS DRV_ADDER Buffers
+x4 VDD CTRL[2] VSS DRV_CTRL[2] Buffers
+x5 VDD CTRL[1] VSS DRV_CTRL[1] Buffers
+x7 VDD CTRL[0] VSS DRV_CTRL[0] Buffers
+.ends
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/Buffers.sym # of pins=4
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/Buffers.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/Buffers.sch
+.subckt Buffers VDD IN VSS OUT
+*.PININFO IN:I VDD:B VSS:B OUT:O
+x1[1] VDD net1 IN VSS INV_D1
+x1[0] VDD net1 IN VSS INV_D1
+x2[1] VDD OUT net1 VSS INV_D2
+x2[0] VDD OUT net1 VSS INV_D2
+x3 VDD net1 OUT VSS INV05
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D1.sym # of pins=4
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D1.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D1.sch
+.subckt INV_D1 VDD VOUT VIN VSS
+*.PININFO VDD:B VSS:B VOUT:O VIN:I
+M2 VOUT VIN VDD VDD sg13_lv_pmos w=0.3u l=0.13u ng=1 m=1
+M1 VOUT VIN VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D2.sym # of pins=4
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D2.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D2.sch
+.subckt INV_D2 VDD VOUT VIN VSS
+*.PININFO VDD:B VSS:B VOUT:O VIN:I
+M1 VOUT VIN VSS VSS sg13_lv_nmos w=0.3u l=0.13u ng=1 m=1
+M2 VOUT VIN VDD VDD sg13_lv_pmos w=0.3u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV05.sym # of pins=4
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV05.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV05.sch
+.subckt INV05 VDD VOUT VIN VSS
+*.PININFO VDD:B VSS:B VOUT:O VIN:I
+M1 net1 VIN VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+M3 VOUT VIN VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+M2 VOUT VIN net1 VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+.ends
+

@@ -1,0 +1,97 @@
+** sch_path: /home/designer/shared/GRO-TDC/std_cells/Counters_6bits.sch
+.subckt Counters_6bits RESET C0_B[5] C0_B[4] C0_B[3] C0_B[2] C0_B[1] C0_B[0] VDD K0 VSS C1_B[5] C1_B[4] C1_B[3] C1_B[2] C1_B[1]
++ C1_B[0] K1 C2_B[5] C2_B[4] C2_B[3] C2_B[2] C2_B[1] C2_B[0] K2
+*.PININFO VDD:B VSS:B K0:I K1:I K2:I RESET:I C0_B[5:0]:O C1_B[5:0]:O C2_B[5:0]:O
+x5 C1_B[0] K1 VDD C1_B[1] C1_B[2] VSS RESET C1_B[3] C1_B[4] C1_B[5] 6bits_counter
+x6 C0_B[0] K0 VDD C0_B[1] C0_B[2] VSS RESET C0_B[3] C0_B[4] C0_B[5] 6bits_counter
+x7 C2_B[0] K2 VDD C2_B[1] C2_B[2] VSS RESET C2_B[3] C2_B[4] C2_B[5] 6bits_counter
+.ends
+
+* expanding   symbol:  /home/designer/shared/GRO-TDC/std_cells/6bits_counter.sym # of pins=10
+** sym_path: /home/designer/shared/GRO-TDC/std_cells/6bits_counter.sym
+** sch_path: /home/designer/shared/GRO-TDC/std_cells/6bits_counter.sch
+.subckt 6bits_counter B0 CLK VDD B1 B2 VSS RESET B3 B4 B5
+*.PININFO VDD:B VSS:B CLK:I RESET:I B0:O B1:O B2:O B3:O B4:O B5:O
+x1 VDD CLK RESET VSS net1 B0 B0 FF_D
+x2 VDD net1 RESET VSS net2 B1 B1 FF_D
+x3 VDD net2 RESET VSS net3 B2 B2 FF_D
+x4 VDD net3 RESET VSS net4 B3 B3 FF_D
+x5 VDD net4 RESET VSS net5 B4 B4 FF_D
+x6 VDD net5 RESET VSS net6 B5 B5 FF_D
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/GRO-TDC/std_cells/FF_D.sym # of pins=7
+** sym_path: /home/designer/shared/GRO-TDC/std_cells/FF_D.sym
+** sch_path: /home/designer/shared/GRO-TDC/std_cells/FF_D.sch
+.subckt FF_D VDD VCLK VRESET VSS VQ VQN VD
+*.PININFO VDD:B VSS:B VCLK:I VD:I VRESET:I VQ:O VQN:O
+x1 VDD net4 VD VSS INV_D1
+x2 VDD net2 net1 VSS INV_D1
+x3 VCLK VSS net7 net2 VDD VCLK_N TG_2C
+x4 VCLK_N VSS net7 net4 VDD VCLK TG_2C
+x5 VCLK VSS net6 net5 VDD VCLK_N TG_2C
+x6 VDD net3 VQ VSS INV_D1
+x7 VCLK_N VSS net6 net3 VDD VCLK TG_2C
+x8 VDD net7 net1 VRESET_N VSS NAND_D2
+x9 VDD net6 VQ VRESET_N VSS NAND_D3
+x10 VDD VCLK_N VCLK VSS INV_D1
+x11 VDD net5 net1 VSS INV_D3
+x12 VDD VRESET_N VRESET VSS INV_D1
+x13 VDD VQN VQ VSS INV_D1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/GRO-TDC/std_cells/INV_D1.sym # of pins=4
+** sym_path: /home/designer/shared/GRO-TDC/std_cells/INV_D1.sym
+** sch_path: /home/designer/shared/GRO-TDC/std_cells/INV_D1.sch
+.subckt INV_D1 VDD VOUT VIN VSS
+*.PININFO VDD:B VSS:B VOUT:O VIN:I
+M2 VOUT VIN VDD VDD sg13_lv_pmos w=0.3u l=0.13u ng=1 m=1
+M1 VOUT VIN VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/GRO-TDC/std_cells/TG_2C.sym # of pins=6
+** sym_path: /home/designer/shared/GRO-TDC/std_cells/TG_2C.sym
+** sch_path: /home/designer/shared/GRO-TDC/std_cells/TG_2C.sch
+.subckt TG_2C VCTRLN VSS VOUT VIN VDD VCTRLP
+*.PININFO VCTRLN:B VCTRLP:B VOUT:O VIN:I VSS:B VDD:B
+M1 VOUT VCTRLN VIN VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+M2 VOUT VCTRLP VIN VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=2
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/GRO-TDC/std_cells/NAND_D2.sym # of pins=5
+** sym_path: /home/designer/shared/GRO-TDC/std_cells/NAND_D2.sym
+** sch_path: /home/designer/shared/GRO-TDC/std_cells/NAND_D2.sch
+.subckt NAND_D2 VDD VA VOUT VB VSS
+*.PININFO VDD:B VSS:B VA:I VB:I VOUT:O
+M1 net1 VB VSS VSS sg13_lv_nmos w=0.9u l=0.13u ng=1 m=1
+M2 VOUT VA net1 VSS sg13_lv_nmos w=0.3u l=0.13u ng=1 m=1
+M3 VOUT VB VDD VDD sg13_lv_pmos w=0.3u l=0.13u ng=1 m=1
+M4 VOUT VA VDD VDD sg13_lv_pmos w=0.3u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/GRO-TDC/std_cells/NAND_D3.sym # of pins=5
+** sym_path: /home/designer/shared/GRO-TDC/std_cells/NAND_D3.sym
+** sch_path: /home/designer/shared/GRO-TDC/std_cells/NAND_D3.sch
+.subckt NAND_D3 VDD VA VOUT VB VSS
+*.PININFO VDD:B VSS:B VA:I VB:I VOUT:O
+M1 net1 VB VSS VSS sg13_lv_nmos w=1.35u l=0.13u ng=1 m=1
+M2 VOUT VA net1 VSS sg13_lv_nmos w=0.45u l=0.13u ng=1 m=1
+M3 VOUT VB VDD VDD sg13_lv_pmos w=0.45u l=0.13u ng=1 m=1
+M4 VOUT VA VDD VDD sg13_lv_pmos w=0.45u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/GRO-TDC/std_cells/INV_D3.sym # of pins=4
+** sym_path: /home/designer/shared/GRO-TDC/std_cells/INV_D3.sym
+** sch_path: /home/designer/shared/GRO-TDC/std_cells/INV_D3.sch
+.subckt INV_D3 VDD VOUT VIN VSS
+*.PININFO VDD:B VSS:B VOUT:O VIN:I
+M1 VOUT VIN VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=3
+M2 VOUT VIN VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=6
+.ends
+
