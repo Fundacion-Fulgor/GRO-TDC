@@ -1,0 +1,490 @@
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/GROTDC.sch
+.subckt GROTDC OUT VDD START STOP VSS RESET CTRL[2] CTRL[1] CTRL[0]
+*.PININFO START:I STOP:I RESET:I VDD:B VSS:B OUT:O CTRL[2:0]:I
+x5 DECLK net1[5] net1[4] net1[3] net1[2] net1[1] net1[0] VDD K0 VSS net2[5] net2[4] net2[3] net2[2] net2[1] net2[0] K1 net3[5]
++ net3[4] net3[3] net3[2] net3[1] net3[0] K2 Counters_6bits
+x6 DRV_RESET D0[5] D0[4] D0[3] D0[2] D0[1] D0[0] VDD DECLK VSS D1[5] D1[4] D1[3] D1[2] D1[1] D1[0] D2[5] D2[4] D2[3] D2[2] D2[1]
++ D2[0] net1[5] net1[4] net1[3] net1[2] net1[1] net1[0] net2[5] net2[4] net2[3] net2[2] net2[1] net2[0] net3[5] net3[4] net3[3] net3[2]
++ net3[1] net3[0] Counters_regs_6bits
+x7 S1[5] S1[4] S1[3] S1[2] S1[1] S1[0] D0[5] D0[4] D0[3] D0[2] D0[1] D0[0] VDD COUT1 D1[5] D1[4] D1[3] D1[2] D1[1] D1[0] VSS VSS
++ Counter_FA_6bits
+x8 S2[6] S2[5] S2[4] S2[3] S2[2] S2[1] S2[0] COUT1 S1[5] S1[4] S1[3] S1[2] S1[1] S1[0] VDD COUT2 VSS D2[5] D2[4] D2[3] D2[2] D2[1]
++ D2[0] VSS VSS Counter_FA_7bits
+x9 RESET ADDER[7] ADDER[6] ADDER[5] ADDER[4] ADDER[3] ADDER[2] ADDER[1] ADDER[0] VDD DECLK2 VSS COUT2 S2[6] S2[5] S2[4] S2[3]
++ S2[2] S2[1] S2[0] Counters_FA_regs_7bits
+x1 VDD DRV_START EN net4 DRV_STOP VSS SR_Latch
+x2 VDD EN IN0 IN1 VSS IN2 GRO
+x3 K0 IN0 VDD IN1 VSS K1 K2 IN2 Modi_Buffers
+x4 ADDER[0] ADDER[1] VDD MUX_ADDER DRV_CTRL[2] DRV_CTRL[1] DRV_CTRL[0] ADDER[2] VSS ADDER[3] ADDER[4] ADDER[5] ADDER[6] ADDER[7]
++ MUX_8_1
+x10 START VDD DRV_START VSS STOP DRV_STOP RESET DRV_RESET OUT MUX_ADDER DRV_CTRL[2] DRV_CTRL[1] DRV_CTRL[0] CTRL[2] CTRL[1]
++ CTRL[0] Buffers_IO
+x11 VDD DRV_STOP DECLK DECLK2 VSS Delay_cell
+.ends
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/Counters_6bits.sym # of pins=9
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/Counters_6bits.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/Counters_6bits.sch
+.subckt Counters_6bits RESET C0_B[5] C0_B[4] C0_B[3] C0_B[2] C0_B[1] C0_B[0] VDD K0 VSS C1_B[5] C1_B[4] C1_B[3] C1_B[2] C1_B[1]
++ C1_B[0] K1 C2_B[5] C2_B[4] C2_B[3] C2_B[2] C2_B[1] C2_B[0] K2
+*.PININFO VDD:B VSS:B K0:I K1:I K2:I RESET:I C0_B[5:0]:O C1_B[5:0]:O C2_B[5:0]:O
+x5 C1_B[0] K1 VDD C1_B[1] C1_B[2] VSS RESET C1_B[3] C1_B[4] C1_B[5] 6bits_counter
+x6 C0_B[0] K0 VDD C0_B[1] C0_B[2] VSS RESET C0_B[3] C0_B[4] C0_B[5] 6bits_counter
+x7 C2_B[0] K2 VDD C2_B[1] C2_B[2] VSS RESET C2_B[3] C2_B[4] C2_B[5] 6bits_counter
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/Counter_regs_6bits/Counters_regs_6bits.sym # of pins=10
+** sym_path: /home/designer/shared/Training/GROTDC/Counter_regs_6bits/Counters_regs_6bits.sym
+** sch_path: /home/designer/shared/Training/GROTDC/Counter_regs_6bits/Counters_regs_6bits.sch
+.subckt Counters_regs_6bits RESET D0_B[5] D0_B[4] D0_B[3] D0_B[2] D0_B[1] D0_B[0] VDD CLK VSS D1_B[5] D1_B[4] D1_B[3] D1_B[2]
++ D1_B[1] D1_B[0] D2_B[5] D2_B[4] D2_B[3] D2_B[2] D2_B[1] D2_B[0] C0_B[5] C0_B[4] C0_B[3] C0_B[2] C0_B[1] C0_B[0] C1_B[5] C1_B[4] C1_B[3]
++ C1_B[2] C1_B[1] C1_B[0] C2_B[5] C2_B[4] C2_B[3] C2_B[2] C2_B[1] C2_B[0]
+*.PININFO VDD:B VSS:B RESET:I C0_B[5:0]:I C1_B[5:0]:I C2_B[5:0]:I D0_B[5:0]:O D1_B[5:0]:O D2_B[5:0]:O CLK:I
+x8 VDD CLK RESET VSS D0_B[0] net1 C0_B[0] FF_D
+x1 VDD CLK RESET VSS D0_B[1] net2 C0_B[1] FF_D
+x2 VDD CLK RESET VSS D0_B[2] net3 C0_B[2] FF_D
+x3 VDD CLK RESET VSS D0_B[3] net4 C0_B[3] FF_D
+x4 VDD CLK RESET VSS D0_B[4] net5 C0_B[4] FF_D
+x5 VDD CLK RESET VSS D0_B[5] net6 C0_B[5] FF_D
+x6 VDD CLK RESET VSS D1_B[0] net7 C1_B[0] FF_D
+x7 VDD CLK RESET VSS D1_B[1] net8 C1_B[1] FF_D
+x9 VDD CLK RESET VSS D1_B[2] net9 C1_B[2] FF_D
+x10 VDD CLK RESET VSS D1_B[3] net10 C1_B[3] FF_D
+x11 VDD CLK RESET VSS D1_B[4] net11 C1_B[4] FF_D
+x12 VDD CLK RESET VSS D1_B[5] net12 C1_B[5] FF_D
+x13 VDD CLK RESET VSS D2_B[0] net13 C2_B[0] FF_D
+x14 VDD CLK RESET VSS D2_B[1] net14 C2_B[1] FF_D
+x15 VDD CLK RESET VSS D2_B[2] net15 C2_B[2] FF_D
+x16 VDD CLK RESET VSS D2_B[3] net16 C2_B[3] FF_D
+x17 VDD CLK RESET VSS D2_B[4] net17 C2_B[4] FF_D
+x18 VDD CLK RESET VSS D2_B[5] net18 C2_B[5] FF_D
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/Counter6_MAXI/Counter_FA_6bits.sym # of pins=7
+** sym_path: /home/designer/shared/Training/GROTDC/Counter6_MAXI/Counter_FA_6bits.sym
+** sch_path: /home/designer/shared/Training/GROTDC/Counter6_MAXI/Counter_FA_6bits.sch
+.subckt Counter_FA_6bits S[5] S[4] S[3] S[2] S[1] S[0] A[5] A[4] A[3] A[2] A[1] A[0] VDD COUT B[5] B[4] B[3] B[2] B[1] B[0] VSS
++ CIN
+*.PININFO VDD:B VSS:B A[5:0]:I B[5:0]:I CIN:I S[5:0]:O COUT:O
+x6 A[0] VDD B[0] S[0] VSS CIN net1 FA
+x1 A[1] VDD B[1] S[1] VSS net1 net2 FA
+x2 A[2] VDD B[2] S[2] VSS net2 net3 FA
+x3 A[3] VDD B[3] S[3] VSS net3 net4 FA
+x4 A[4] VDD B[4] S[4] VSS net4 net5 FA
+x5 A[5] VDD B[5] S[5] VSS net5 COUT FA
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/Counter7_MAXI/Counter_FA_7bits.sym # of pins=7
+** sym_path: /home/designer/shared/Training/GROTDC/Counter7_MAXI/Counter_FA_7bits.sym
+** sch_path: /home/designer/shared/Training/GROTDC/Counter7_MAXI/Counter_FA_7bits.sch
+.subckt Counter_FA_7bits S[6] S[5] S[4] S[3] S[2] S[1] S[0] A[6] A[5] A[4] A[3] A[2] A[1] A[0] VDD COUT B[6] B[5] B[4] B[3] B[2]
++ B[1] B[0] VSS CIN
+*.PININFO VDD:B VSS:B A[6:0]:I B[6:0]:I CIN:I S[6:0]:O COUT:O
+x6 A[0] VDD B[0] S[0] VSS CIN net1 FA
+x1 A[1] VDD B[1] S[1] VSS net1 net2 FA
+x2 A[2] VDD B[2] S[2] VSS net2 net3 FA
+x3 A[3] VDD B[3] S[3] VSS net3 net4 FA
+x4 A[4] VDD B[4] S[4] VSS net4 net5 FA
+x5 A[5] VDD B[5] S[5] VSS net5 net6 FA
+x7 A[6] VDD B[6] S[6] VSS net6 COUT FA
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/Counters__FA_regs_7bits.sym # of
+*+ pins=6
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/Counters__FA_regs_7bits.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/Counters__FA_regs_7bits.sch
+.subckt Counters_FA_regs_7bits RESET D[7] D[6] D[5] D[4] D[3] D[2] D[1] D[0] VDD CLK VSS S[7] S[6] S[5] S[4] S[3] S[2] S[1] S[0]
+*.PININFO VDD:B VSS:B RESET:I S[7:0]:I D[7:0]:O CLK:I
+x8 VDD CLK RESET VSS D[0] net1 S[0] FF_D
+x1 VDD CLK RESET VSS D[1] net2 S[1] FF_D
+x2 VDD CLK RESET VSS D[2] net3 S[2] FF_D
+x3 VDD CLK RESET VSS D[3] net4 S[3] FF_D
+x4 VDD CLK RESET VSS D[4] net5 S[4] FF_D
+x5 VDD CLK RESET VSS D[5] net6 S[5] FF_D
+x6 VDD CLK RESET VSS D[6] net7 S[6] FF_D
+x7 VDD CLK RESET VSS D[7] net8 S[7] FF_D
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/SR_Latch.sym # of pins=6
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/SR_Latch.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/SR_Latch.sch
+.subckt SR_Latch VDD VS QN QP VR VSS
+*.PININFO VDD:B VSS:B VS:I VR:I QP:O QN:O
+x1 VDD QN VS QP VSS NOR
+x2 VDD QP QN VR VSS NOR
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/GRO.sym # of pins=6
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/GRO.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/GRO.sch
+.subckt GRO VDD EN K0 K1 VSS K2
+*.PININFO EN:I VDD:B VSS:B K0:O K1:O K2:O
+x2 S K0 K2 VSS INV3
+x3 S K1 K0 VSS INV3
+x4 S K2 K1 VSS INV3
+M1 S G VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=32
+x5[1] VDD EN_N EN VSS INV_D1
+x5[0] VDD EN_N EN VSS INV_D1
+x6[3] VDD net1 EN_N VSS INV_D1
+x6[2] VDD net1 EN_N VSS INV_D1
+x6[1] VDD net1 EN_N VSS INV_D1
+x6[0] VDD net1 EN_N VSS INV_D1
+x7[7] VDD net2 net1 VSS INV_D1
+x7[6] VDD net2 net1 VSS INV_D1
+x7[5] VDD net2 net1 VSS INV_D1
+x7[4] VDD net2 net1 VSS INV_D1
+x7[3] VDD net2 net1 VSS INV_D1
+x7[2] VDD net2 net1 VSS INV_D1
+x7[1] VDD net2 net1 VSS INV_D1
+x7[0] VDD net2 net1 VSS INV_D1
+x8[15] VDD G net2 VSS INV_D1
+x8[14] VDD G net2 VSS INV_D1
+x8[13] VDD G net2 VSS INV_D1
+x8[12] VDD G net2 VSS INV_D1
+x8[11] VDD G net2 VSS INV_D1
+x8[10] VDD G net2 VSS INV_D1
+x8[9] VDD G net2 VSS INV_D1
+x8[8] VDD G net2 VSS INV_D1
+x8[7] VDD G net2 VSS INV_D1
+x8[6] VDD G net2 VSS INV_D1
+x8[5] VDD G net2 VSS INV_D1
+x8[4] VDD G net2 VSS INV_D1
+x8[3] VDD G net2 VSS INV_D1
+x8[2] VDD G net2 VSS INV_D1
+x8[1] VDD G net2 VSS INV_D1
+x8[0] VDD G net2 VSS INV_D1
+M2 S G VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=32
+M3 K2 G VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=32
+M4 K0 EN_N VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=32
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/Modi_Buffers.sym # of pins=8
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/Modi_Buffers.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/Modi_Buffers.sch
+.subckt Modi_Buffers K0 IN0 VDD IN1 VSS K1 K2 IN2
+*.PININFO IN0:I IN1:I IN2:I K0:O K1:O K2:O VDD:B VSS:B
+x1[1] VDD net1 IN0 VSS INV_D1
+x1[0] VDD net1 IN0 VSS INV_D1
+x2[1] VDD K0 net1 VSS INV_D2
+x2[0] VDD K0 net1 VSS INV_D2
+x3 VDD net1 K0 VSS INV05
+x3[1] VDD net2 IN1 VSS INV_D1
+x3[0] VDD net2 IN1 VSS INV_D1
+x4[1] VDD net3 IN2 VSS INV_D1
+x4[0] VDD net3 IN2 VSS INV_D1
+x5[1] VDD K1 net2 VSS INV_D2
+x5[0] VDD K1 net2 VSS INV_D2
+x6[1] VDD K2 net3 VSS INV_D2
+x6[0] VDD K2 net3 VSS INV_D2
+x1 VDD net2 K1 VSS INV05
+x2 VDD net3 K2 VSS INV05
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/MUX_8_1.sym # of pins=12
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/MUX_8_1.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/MUX_8_1.sch
+.subckt MUX_8_1 VINA VINB VDD VOUT CTRL[2] CTRL[1] CTRL[0] VINC VSS VIND VINE VINF VING VINH
+*.PININFO VSS:B VOUT:O VDD:B VINA:I VINB:I VINC:I VIND:I CTRL[2:0]:I VINE:I VINF:I VING:I VINH:I
+x7 VDD net1 VOUT CTRL[2] net2 VSS MUX_2_1
+x8 VINA VINB VDD net1 CTRL[1] CTRL[0] VINC VSS VIND MUX_4_1
+x9 VINE VINF VDD net2 CTRL[1] CTRL[0] VING VSS VINH MUX_4_1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/Buffers_IO.sym # of pins=12
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/Buffers_IO.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/Buffers_IO.sch
+.subckt Buffers_IO DRV_START VDD START VSS DRV_STOP STOP DRV_RESET RESET DRV_ADDER ADDER DRV_CTRL[2] DRV_CTRL[1] DRV_CTRL[0]
++ CTRL[2] CTRL[1] CTRL[0]
+*.PININFO DRV_START:I VDD:B VSS:B DRV_STOP:I DRV_RESET:I ADDER:I START:O STOP:O RESET:O DRV_ADDER:O CTRL[2:0]:I DRV_CTRL[2:0]:O
+x1 VDD DRV_START VSS START Buffers
+x2 VDD DRV_STOP VSS STOP Buffers
+x3 VDD DRV_RESET VSS RESET Buffers
+x6 VDD ADDER VSS DRV_ADDER Buffers
+x4 VDD CTRL[2] VSS DRV_CTRL[2] Buffers
+x5 VDD CTRL[1] VSS DRV_CTRL[1] Buffers
+x7 VDD CTRL[0] VSS DRV_CTRL[0] Buffers
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/Delay_cell.sym # of pins=5
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/Delay_cell.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/Delay_cell.sch
+.subckt Delay_cell VDD IN OUT1 OUT2 VSS
+*.PININFO IN:I VDD:B VSS:B OUT1:O OUT2:O
+x5[1] VDD net1 IN VSS INV_D1
+x5[0] VDD net1 IN VSS INV_D1
+x6[3] VDD OUT1 net1 VSS INV_D1
+x6[2] VDD OUT1 net1 VSS INV_D1
+x6[1] VDD OUT1 net1 VSS INV_D1
+x6[0] VDD OUT1 net1 VSS INV_D1
+x7[7] VDD net2 OUT1 VSS INV_D1
+x7[6] VDD net2 OUT1 VSS INV_D1
+x7[5] VDD net2 OUT1 VSS INV_D1
+x7[4] VDD net2 OUT1 VSS INV_D1
+x7[3] VDD net2 OUT1 VSS INV_D1
+x7[2] VDD net2 OUT1 VSS INV_D1
+x7[1] VDD net2 OUT1 VSS INV_D1
+x7[0] VDD net2 OUT1 VSS INV_D1
+x8[15] VDD OUT2 net2 VSS INV_D1
+x8[14] VDD OUT2 net2 VSS INV_D1
+x8[13] VDD OUT2 net2 VSS INV_D1
+x8[12] VDD OUT2 net2 VSS INV_D1
+x8[11] VDD OUT2 net2 VSS INV_D1
+x8[10] VDD OUT2 net2 VSS INV_D1
+x8[9] VDD OUT2 net2 VSS INV_D1
+x8[8] VDD OUT2 net2 VSS INV_D1
+x8[7] VDD OUT2 net2 VSS INV_D1
+x8[6] VDD OUT2 net2 VSS INV_D1
+x8[5] VDD OUT2 net2 VSS INV_D1
+x8[4] VDD OUT2 net2 VSS INV_D1
+x8[3] VDD OUT2 net2 VSS INV_D1
+x8[2] VDD OUT2 net2 VSS INV_D1
+x8[1] VDD OUT2 net2 VSS INV_D1
+x8[0] VDD OUT2 net2 VSS INV_D1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/6bits_counter.sym # of pins=10
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/6bits_counter.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/6bits_counter.sch
+.subckt 6bits_counter B0 CLK VDD B1 B2 VSS RESET B3 B4 B5
+*.PININFO VDD:B VSS:B CLK:I RESET:I B0:O B1:O B2:O B3:O B4:O B5:O
+x1 VDD CLK RESET VSS net1 B0 B0 FF_D
+x2 VDD net1 RESET VSS net2 B1 B1 FF_D
+x3 VDD net2 RESET VSS net3 B2 B2 FF_D
+x4 VDD net3 RESET VSS net4 B3 B3 FF_D
+x5 VDD net4 RESET VSS net5 B4 B4 FF_D
+x6 VDD net5 RESET VSS net6 B5 B5 FF_D
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/FF_D/FF_D.sym # of pins=7
+** sym_path: /home/designer/shared/Training/GROTDC/FF_D/FF_D.sym
+** sch_path: /home/designer/shared/Training/GROTDC/FF_D/FF_D.sch
+.subckt FF_D VDD VCLK VRESET VSS VQ VQN VD
+*.PININFO VDD:B VSS:B VCLK:I VD:I VRESET:I VQ:O VQN:O
+x1 VDD net4 VD VSS INV_D1
+x2 VDD net2 net1 VSS INV_D1
+x3 VCLK VSS net7 net2 VDD VCLK_N TG_2C
+x4 VCLK_N VSS net7 net4 VDD VCLK TG_2C
+x5 VCLK VSS net6 net5 VDD VCLK_N TG_2C
+x6 VDD net3 VQ VSS INV_D1
+x7 VCLK_N VSS net6 net3 VDD VCLK TG_2C
+x8 VDD net7 net1 VRESET_N VSS NAND_D2
+x9 VDD net6 VQ VRESET_N VSS NAND_D3
+x10 VDD VCLK_N VCLK VSS INV_D1
+x11 VDD net5 net1 VSS INV_D3
+x12 VDD VRESET_N VRESET VSS INV_D1
+x13 VDD VQN VQ VSS INV_D1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/FA_MAXI/FA.sym # of pins=7
+** sym_path: /home/designer/shared/Training/GROTDC/FA_MAXI/FA.sym
+** sch_path: /home/designer/shared/Training/GROTDC/FA_MAXI/FA.sch
+.subckt FA A VDD B S VSS CIN CSAL
+*.PININFO B:I A:I CIN:I S:O CSAL:O VDD:B VSS:B
+x1 net2 B VDD CIN VSS XOR
+x5 S A VDD net2 VSS XOR
+x6 VDD net1 net4 net3 VSS OR
+x7 VDD CSAL net1 net5 VSS OR
+x2 VDD B net4 CIN VSS AND
+x3 VDD B net3 A VSS AND
+x4 VDD CIN net5 A VSS AND
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/NOR.sym # of pins=5
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/NOR.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/NOR.sch
+.subckt NOR VDD VOUT VA VB VSS
+*.PININFO VDD:B VSS:B VA:I VB:I VOUT:O
+M1 VOUT VA VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+M2 VOUT VB VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+M3 VOUT VB net1 VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+M4 net1 VA VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV3.sym # of pins=4
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV3.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV3.sch
+.subckt INV3 VDD VOUT VIN VSS
+*.PININFO VDD:B VSS:B VOUT:O VIN:I
+x2 VDD net2 VIN VSS INV_D1
+x1[1] VDD net1 net2 VSS INV_D1
+x1[0] VDD net1 net2 VSS INV_D1
+x3[3] VDD VOUT net1 VSS INV_D1
+x3[2] VDD VOUT net1 VSS INV_D1
+x3[1] VDD VOUT net1 VSS INV_D1
+x3[0] VDD VOUT net1 VSS INV_D1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D1.sym # of pins=4
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D1.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D1.sch
+.subckt INV_D1 VDD VOUT VIN VSS
+*.PININFO VDD:B VSS:B VOUT:O VIN:I
+M2 VOUT VIN VDD VDD sg13_lv_pmos w=0.3u l=0.13u ng=1 m=1
+M1 VOUT VIN VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D2.sym # of pins=4
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D2.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV_D2.sch
+.subckt INV_D2 VDD VOUT VIN VSS
+*.PININFO VDD:B VSS:B VOUT:O VIN:I
+M1 VOUT VIN VSS VSS sg13_lv_nmos w=0.3u l=0.13u ng=1 m=1
+M2 VOUT VIN VDD VDD sg13_lv_pmos w=0.3u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV05.sym # of pins=4
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV05.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/INV05.sch
+.subckt INV05 VDD VOUT VIN VSS
+*.PININFO VDD:B VSS:B VOUT:O VIN:I
+M1 net1 VIN VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+M3 VOUT VIN VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+M2 VOUT VIN net1 VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/MUX_2_1.sym # of pins=6
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/MUX_2_1.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/MUX_2_1.sch
+.subckt MUX_2_1 VDD VINA VOUT VS VINB VSS
+*.PININFO VOUT:O VINA:I VINB:I VS:I VDD:B VSS:B
+x3 VDD net1 VINA VSS INV_D1
+x4 VDD net3 VS VSS INV_D1
+x5 VDD net2 VINB VSS INV_D1
+x6 VSS VSS VOUT net1 VDD VDD TG_2C
+x7 net3 VSS VOUT net1 VDD VS TG_2C
+x1 VS VSS VOUT net2 VDD net3 TG_2C
+x2 VSS VSS VOUT net2 VDD VDD TG_2C
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/MUX_4_1.sym # of pins=8
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/MUX_4_1.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/MUX_4_1.sch
+.subckt MUX_4_1 VINA VINB VDD VOUT VS[1] VS[0] VINC VSS VIND
+*.PININFO VOUT:O VDD:B VSS:B VINA:I VINB:I VINC:I VIND:I VS[1:0]:I
+x3 VDD VINA net1 VS[0] VINB VSS MUX_2_1
+x1 VDD VINC net2 VS[0] VIND VSS MUX_2_1
+x2 VDD net1 VOUT VS[1] net2 VSS MUX_2_1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/Buffers.sym # of pins=4
+** sym_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/Buffers.sym
+** sch_path: /home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/Buffers.sch
+.subckt Buffers VDD IN VSS OUT
+*.PININFO IN:I VDD:B VSS:B OUT:O
+x1[1] VDD net1 IN VSS INV_D1
+x1[0] VDD net1 IN VSS INV_D1
+x2[1] VDD OUT net1 VSS INV_D2
+x2[0] VDD OUT net1 VSS INV_D2
+x3 VDD net1 OUT VSS INV05
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/TG_2C/TG_2C.sym # of pins=6
+** sym_path: /home/designer/shared/Training/GROTDC/TG_2C/TG_2C.sym
+** sch_path: /home/designer/shared/Training/GROTDC/TG_2C/TG_2C.sch
+.subckt TG_2C VCTRLN VSS VOUT VIN VDD VCTRLP
+*.PININFO VCTRLN:B VCTRLP:B VOUT:O VIN:I VSS:B VDD:B
+M1 VOUT VCTRLN VIN VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+M2 VOUT VCTRLP VIN VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=2
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/FF_D/NAND_D2.sym # of pins=5
+** sym_path: /home/designer/shared/Training/GROTDC/FF_D/NAND_D2.sym
+** sch_path: /home/designer/shared/Training/GROTDC/FF_D/NAND_D2.sch
+.subckt NAND_D2 VDD VA VOUT VB VSS
+*.PININFO VDD:B VSS:B VA:I VB:I VOUT:O
+M1 net1 VB VSS VSS sg13_lv_nmos w=0.9u l=0.13u ng=1 m=1
+M2 VOUT VA net1 VSS sg13_lv_nmos w=0.3u l=0.13u ng=1 m=1
+M3 VOUT VB VDD VDD sg13_lv_pmos w=0.3u l=0.13u ng=1 m=1
+M4 VOUT VA VDD VDD sg13_lv_pmos w=0.3u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/FF_D/NAND_D3.sym # of pins=5
+** sym_path: /home/designer/shared/Training/GROTDC/FF_D/NAND_D3.sym
+** sch_path: /home/designer/shared/Training/GROTDC/FF_D/NAND_D3.sch
+.subckt NAND_D3 VDD VA VOUT VB VSS
+*.PININFO VDD:B VSS:B VA:I VB:I VOUT:O
+M1 net1 VB VSS VSS sg13_lv_nmos w=1.35u l=0.13u ng=1 m=1
+M2 VOUT VA net1 VSS sg13_lv_nmos w=0.45u l=0.13u ng=1 m=1
+M3 VOUT VB VDD VDD sg13_lv_pmos w=0.45u l=0.13u ng=1 m=1
+M4 VOUT VA VDD VDD sg13_lv_pmos w=0.45u l=0.13u ng=1 m=1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/FF_D/INV_D3.sym # of pins=4
+** sym_path: /home/designer/shared/Training/GROTDC/FF_D/INV_D3.sym
+** sch_path: /home/designer/shared/Training/GROTDC/FF_D/INV_D3.sch
+.subckt INV_D3 VDD VOUT VIN VSS
+*.PININFO VDD:B VSS:B VOUT:O VIN:I
+M1 VOUT VIN VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=3
+M2 VOUT VIN VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=6
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/XOR_MAXI/XOR.sym # of pins=5
+** sym_path: /home/designer/shared/Training/GROTDC/XOR_MAXI/XOR.sym
+** sch_path: /home/designer/shared/Training/GROTDC/XOR_MAXI/XOR.sch
+.subckt XOR OUT A VDD B VSS
+*.PININFO VDD:B VSS:B A:I B:I OUT:O
+x2 VDD net3 net2 B VSS AND
+x4 VDD net3 A VSS INV_D1
+x5 VDD net1 B VSS INV_D1
+x1 VDD OUT net2 net4 VSS OR
+x3 VDD A net4 net1 VSS AND
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/OR/OR.sym # of pins=5
+** sym_path: /home/designer/shared/Training/GROTDC/OR/OR.sym
+** sch_path: /home/designer/shared/Training/GROTDC/OR/OR.sch
+.subckt OR VDD VOUT VA VB VSS
+*.PININFO VDD:B VSS:B VA:I VB:I VOUT:O
+x2 VDD VOUT net1 VSS INV_D1
+x1 VDD net1 VA VB VSS NOR
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/AND/AND.sym # of pins=5
+** sym_path: /home/designer/shared/Training/GROTDC/AND/AND.sym
+** sch_path: /home/designer/shared/Training/GROTDC/AND/AND.sch
+.subckt AND VDD VA VOUT VB VSS
+*.PININFO VDD:B VSS:B VA:I VB:I VOUT:O
+x1 VDD VA net1 VB VSS NAND
+x2 VDD VOUT net1 VSS INV_D1
+.ends
+
+
+* expanding   symbol:  /home/designer/shared/Training/GROTDC/AND/NAND.sym # of pins=5
+** sym_path: /home/designer/shared/Training/GROTDC/AND/NAND.sym
+** sch_path: /home/designer/shared/Training/GROTDC/AND/NAND.sch
+.subckt NAND VDD VA VOUT VB VSS
+*.PININFO VDD:B VSS:B VA:I VB:I VOUT:O
+M1 net1 VB VSS VSS sg13_lv_nmos w=0.45u l=0.13u ng=1 m=1
+M2 VOUT VA net1 VSS sg13_lv_nmos w=0.15u l=0.13u ng=1 m=1
+M3 VOUT VB VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+M4 VOUT VA VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1 m=1
+.ends
+

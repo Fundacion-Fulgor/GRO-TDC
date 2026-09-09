@@ -1,9 +1,8 @@
-v {xschem version=3.4.8RC file_version=1.3}
+v {xschem version=3.4.6 file_version=1.2}
 G {}
 K {}
 V {}
 S {}
-F {}
 E {}
 N 2460 -660 2460 -640 {lab=VDD}
 N 2900 -660 2900 -640 {lab=VDD}
@@ -101,13 +100,13 @@ N 2930 -90 2930 -70 {lab=VDD}
 N 2740 -10 2780 -10 {lab=DRV_STOP}
 N 3080 -20 3120 -20 {lab=DECLK}
 N 3080 0 3120 0 {lab=DECLK2}
-C {Counters_6bits.sym} 2240 -400 0 0 {name=x5
+C {/home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/Counters_6bits.sym} 2240 -400 0 0 {name=x5
 }
-C {Counters_regs_6bits.sym} 2680 -370 0 0 {name=x6
+C {/home/designer/shared/Training/GROTDC/Counter_regs_6bits/Counters_regs_6bits.sym} 2680 -370 0 0 {name=x6
 }
-C {Counter_FA_6bits.sym} 1880 -190 0 0 {name=x7
+C {/home/designer/shared/Training/GROTDC/Counter6_MAXI/Counter_FA_6bits.sym} 1880 -190 0 0 {name=x7
 }
-C {Counter_FA_7bits.sym} 2080 -110 0 0 {name=x8
+C {/home/designer/shared/Training/GROTDC/Counter7_MAXI/Counter_FA_7bits.sym} 2080 -110 0 0 {name=x8
 }
 C {lab_wire.sym} 2460 -440 0 0 {name=p9 sig_type=std_logic lab=VSS
 }
@@ -169,7 +168,7 @@ C {lab_wire.sym} 2740 -280 3 0 {name=p34 sig_type=std_logic lab=DECLK2
 }
 C {lab_wire.sym} 2760 -240 3 0 {name=p38 sig_type=std_logic lab=RESET
 }
-C {Counters__FA_regs_7bits.sym} 2740 -160 0 0 {name=x9
+C {/home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/Counters__FA_regs_7bits.sym} 2740 -160 0 0 {name=x9
 }
 C {lab_wire.sym} 3060 -280 0 1 {name=p39 sig_type=std_logic lab=ADDER[7:0]
 }
@@ -187,7 +186,7 @@ C {lab_wire.sym} 2600 -840 0 0 {name=p2 sig_type=std_logic lab=VSS
 }
 C {lab_wire.sym} 2800 -1010 0 0 {name=p1 sig_type=std_logic lab=VDD
 }
-C {SR_Latch.sym} 2510 -830 0 0 {name=x1}
+C {/home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/SR_Latch.sym} 2510 -830 0 0 {name=x1}
 C {lab_wire.sym} 2600 -1000 0 0 {name=p3 sig_type=std_logic lab=VDD
 }
 C {lab_wire.sym} 2490 -940 0 0 {name=p4 sig_type=std_logic lab=DRV_START
@@ -196,7 +195,7 @@ C {lab_wire.sym} 2490 -900 0 0 {name=p5 sig_type=std_logic lab=DRV_STOP
 }
 C {lab_wire.sym} 2710 -940 0 0 {name=p6 sig_type=std_logic lab=EN
 }
-C {GRO.sym} 2740 -720 0 0 {name=x2
+C {/home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/GRO.sym} 2740 -720 0 0 {name=x2
 }
 C {lab_wire.sym} 2800 -710 0 0 {name=p7 sig_type=std_logic lab=VSS
 }
@@ -208,7 +207,7 @@ C {lab_wire.sym} 3140 -710 0 0 {name=p44 sig_type=std_logic lab=IN2
 }
 C {lab_wire.sym} 2020 -430 0 0 {name=p51 sig_type=std_logic lab=VSS
 }
-C {Modi_Buffers.sym} 1800 -370 0 0 {name=x3
+C {/home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/Modi_Buffers.sym} 1800 -370 0 0 {name=x3
 }
 C {lab_wire.sym} 2170 -590 3 1 {name=p52 sig_type=std_logic lab=K0
 }
@@ -246,7 +245,7 @@ C {lab_wire.sym} 3520 -400 0 1 {name=p68 sig_type=std_logic lab=MUX_ADDER
 }
 C {lab_wire.sym} 3350 -160 0 0 {name=p69 sig_type=std_logic lab=VSS
 }
-C {MUX_8_1.sym} 3180 -330 0 0 {name=x4}
+C {/home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/std_cells/MUX_8_1.sym} 3180 -330 0 0 {name=x4}
 C {ipin.sym} 1920 -880 0 0 {name=p70 lab=CTRL[2:0]}
 C {lab_wire.sym} 2020 110 0 0 {name=p71 sig_type=std_logic lab=VSS
 }
@@ -268,14 +267,14 @@ C {lab_wire.sym} 2210 0 0 1 {name=p86 sig_type=std_logic lab=DRV_RESET
 }
 C {lab_wire.sym} 2220 20 0 1 {name=p87 sig_type=std_logic lab=OUT
 }
-C {Buffers_IO.sym} 2020 0 0 0 {name=x10}
+C {/home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/Buffers_IO.sym} 2020 0 0 0 {name=x10}
 C {lab_wire.sym} 3390 -120 0 0 {name=p77 sig_type=std_logic lab=DRV_CTRL[2:0]
 }
 C {lab_wire.sym} 2220 40 0 1 {name=p78 sig_type=std_logic lab=DRV_CTRL[2:0]
 }
 C {lab_wire.sym} 1820 40 0 0 {name=p79 sig_type=std_logic lab=CTRL[2:0]
 }
-C {Delay_cell.sym} 2930 -10 0 0 {name=x11}
+C {/home/designer/shared/Training/GROTDC/GROTDC_marzo/GRO-TDC/Delay_cell.sym} 2930 -10 0 0 {name=x11}
 C {lab_wire.sym} 2930 70 0 0 {name=p45 sig_type=std_logic lab=VSS
 }
 C {lab_wire.sym} 2930 -90 0 0 {name=p80 sig_type=std_logic lab=VDD
