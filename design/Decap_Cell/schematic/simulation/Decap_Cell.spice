@@ -1,0 +1,6 @@
+** sch_path: /home/eamtastudent/GRO-TDC/design/schematic/Decap.sch
+.subckt Decap VDD VSS
+*.PININFO VDD:B VSS:B
+MM1 net1 net2 VSS VSS sg13_lv_nmos w=0.15u l=0.13u ng=1
+MM2 net2 net1 VDD VDD sg13_lv_pmos w=0.15u l=0.13u ng=1
+.ends
