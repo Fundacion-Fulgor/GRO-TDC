@@ -28,3 +28,7 @@ __pycache__/
 !design/
 !verification/
 !drc/
+backups/
+*:Zone.Identifier
+GROTDC_09_09_26
+GROTDC_MB/schematic/simulation/GROTDC.spice
